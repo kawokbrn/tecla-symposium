@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>TECLA | AI, Education & Language 2026</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #03030f;
+            background-image: url('assets/images/wall3.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+            color: #f0f0f0;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(ellipse at 50% 50%, rgba(3, 3, 15, 0.96) 30%, rgba(3, 3, 15, 0.6) 85%);
+            z-index: -1;
+        }
+
+        body::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+        body {
+            scrollbar-width: none;
+        }
+
+        .glass-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(16px);
+            background: rgba(5, 5, 20, 0.65);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .header-fade {
+            background: rgba(3, 3, 15, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .placeholder-logo {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(168,85,247,0.4);
+            color: #c084fc;
+        }
+        .placeholder-logo i {
+            font-size: 1.6rem;
+            color: #d8b4fe;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #e879f9, #a855f7, #7c3aed);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+        .logo span {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #c084fc;
+        }
+        .tab-buttons {
+            display: flex;
+            gap: 1rem;
+            background: rgba(20, 20, 40, 0.6);
+            padding: 0.5rem 1.2rem;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ccc;
+            cursor: pointer;
+            padding: 0.5rem 0.2rem;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .tab-btn.active {
+            color: white;
+            border-bottom: 2px solid #c084fc;
+            transform: translateY(-1px);
+        }
+        .lang-toggle {
+            display: flex;
+            gap: 8px;
+            background: rgba(0,0,0,0.4);
+            padding: 0.3rem 0.8rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+        }
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #ccc;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.3rem 0.7rem;
+            border-radius: 30px;
+            transition: 0.2s;
+            font-size: 0.85rem;
+        }
+        .lang-btn.active-lang {
+            background: #7c3aed;
+            color: white;
+            box-shadow: 0 2px 8px rgba(124,58,237,0.4);
+        }
+
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 2rem 5rem;
+            background: rgba(3, 3, 15, 0.3);
+        }
+
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background: rgba(10, 10, 25, 0.7);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 2rem;
+        }
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            animation: tickerScroll 25s linear infinite;
+            padding: 0.8rem 0;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .ticker span {
+            margin: 0 1.5rem;
+            color: #e2d5ff;
+        }
+        @keyframes tickerScroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .carousel-horizontal {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1.5rem;
+            padding-bottom: 1rem;
+            margin: 1.5rem 0;
+            scrollbar-width: none;
+        }
+        .carousel-horizontal::-webkit-scrollbar {
+            display: none;
+        }
+        .carousel-card {
+            min-width: 280px;
+            background: rgba(20, 20, 40, 0.55);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            padding: 1.5rem;
+            scroll-snap-align: start;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .preview-grid {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        .preview-card {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(10,10,30,0.8));
+            border-radius: 32px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(168,85,247,0.4);
+            backdrop-filter: blur(8px);
+        }
+        .preview-card:hover {
+            transform: scale(1.02);
+            background: rgba(124,58,237,0.3);
+            border-color: #c084fc;
+        }
+        .schedule-live-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        @media (min-width: 900px) {
+            .schedule-live-container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            .session-list {
+                flex: 1;
+                max-height: 70vh;
+                overflow-y: auto;
+                padding-right: 1rem;
+            }
+            .live-player-area {
+                flex: 2;
+                position: sticky;
+                top: 100px;
+            }
+        }
+        .session-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .session-list-item {
+            background: rgba(20, 20, 40, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .session-list-item:hover, .session-list-item.active-session {
+            background: rgba(124,58,237,0.3);
+            border-color: #c084fc;
+            transform: translateX(4px);
+        }
+        .session-list-item .time {
+            font-size: 0.8rem;
+            color: #c084fc;
+            font-weight: 600;
+        }
+        .session-list-item .title {
+            font-weight: 600;
+            margin: 0.3rem 0;
+        }
+        .live-player-area {
+            background: rgba(0,0,0,0.4);
+            border-radius: 32px;
+            padding: 1.2rem;
+            backdrop-filter: blur(8px);
+        }
+        .embed-responsive {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        .embed-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .session-detail {
+            margin-top: 1rem;
+        }
+        .session-detail h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .faq-item, .info-card, .contact-card, .speaker-card {
+            background: rgba(15, 15, 30, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 1.2rem 1.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        .speaker-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .speaker-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid #c084fc;
+            background: #2a2a4a;
+        }
+        .social-links a {
+            color: #ccc;
+            margin: 0 0.5rem;
+            font-size: 1.4rem;
+            transition: 0.2s;
+        }
+        .social-links a:hover { color: #c084fc; }
+        .language-badge {
+            display: inline-block;
+            background: rgba(124,58,237,0.3);
+            padding: 0.2rem 0.6rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            margin-left: 0.8rem;
+            font-weight: 600;
+        }
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+        }
+        .social-icon-list {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .social-icon-list a {
+            color: #ddd;
+            font-size: 1.5rem;
+            transition: 0.2s;
+        }
+        .social-icon-list a:hover { color: #c084fc; transform: translateY(-2px); }
+        .btn-channel {
+            display: inline-block;
+            background: #ff0000;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+        @media (max-width: 800px) {
+            .nav-container { flex-direction: column; align-items: stretch; }
+            .logo-area { justify-content: center; }
+            .tab-buttons { justify-content: center; }
+            .preview-grid { flex-direction: column; }
+            .live-player-area { position: relative; top: 0; }
+        }
+        .contact-icon { font-size: 2rem; margin-right: 1rem; color: #c084fc; }
+        /* Modal styles for speaker bios */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(16px);
+            margin: auto;
+            padding: 2rem;
+            border-radius: 32px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 1px solid rgba(168,85,247,0.4);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.5);
+            color: #f0f0f0;
+        }
+        .modal-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #c084fc;
+        }
+        .modal-content .role {
+            color: #aaa;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .modal-content .full-bio {
+            line-height: 1.6;
+            margin: 1rem 0;
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .close-modal:hover {
+            color: #c084fc;
+        }
+        .read-more-btn {
+            background: rgba(124,58,237,0.3);
+            border: 1px solid #c084fc;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            transition: 0.2s;
+            display: inline-block;
+        }
+        .read-more-btn:hover {
+            background: #7c3aed;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+
+<div class="glass-header" id="header">
+    <div class="nav-container">
+        <div class="logo-area">
+            <div class="placeholder-logo" style="width: auto; height: auto; background: transparent; border: none; padding: 4px;" title="PPGED logo">
+                <img src="assets\images\simb3.png" alt="PPGED Logo" style="width: 90px; height: auto; display: block;">
+            </div>
+            <div class="logo">
+                <h1> TECLA <span>AI, Education & Language</span></h1>
+            </div>
+            <div class="placeholder-logo" title="TECLA logo">
+                <img src="assets\images\simb4.jpg" alt="TECLA Logo" style="width: 100%; height: auto; border-radius: 12px;">
+            </div>
+        </div>
+        <div class="tab-buttons">
+            <button class="tab-btn active" data-tab="home"></button>
+            <button class="tab-btn" data-tab="schedule"></button>
+            <button class="tab-btn" data-tab="info"></button>
+            <button class="tab-btn" data-tab="speakers"></button>
+            <button class="tab-btn" data-tab="contact"></button>
+        </div>
+        <div class="lang-toggle">
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="pt">PT</button>
+            <button class="lang-btn" data-lang="es">ES</button>
+        </div>
+    </div>
+</div>
+
+<div class="ticker-wrap"><div class="ticker" id="tickerText"></div></div>
+<div class="main-content" id="mainContent"></div>
+<footer><p>✨ TECLA | GLOBAL Symposium on AI — 2026 — AI transforming education, language & society ✨</p></footer>
+
+<!-- Modal for speaker bios -->
+<div id="speakerModal" class="modal">
+    <span class="close-modal">&times;</span>
+    <div class="modal-content" id="modalContent">
+        <h3 id="modalName"></h3>
+        <div class="role" id="modalRole"></div>
+        <div class="full-bio" id="modalBio"></div>
+    </div>
+</div>
+
+<script>
+    // ==================== MULTILINGUAL CONTENT ====================
+    const translations = {
+        en: {
+            tabHome: "🏠 Home", tabSchedule: "📅 Watch Live", tabInfo: "ℹ️ Info", tabSpeakers: "🎤 Speakers", tabContact: "📬 Contact",
+            heroTitle: "Global Symposium on AI & Education", heroDate: "April 23–24, 2026 • Live from Aracaju, Brazil",
+            symposiumInfo: "Researchers from around the world discuss Artificial Intelligence and its impact on education, language, and society. 12 live sessions (10 panels + opening/closing) in Portuguese, English, and Spanish. Free, no registration.",
+            faqTitle: "❓ Frequently Asked Questions", faq: [
+                { q: "Is registration required?", a: "No prior registration needed. 100% free and open." },
+                { q: "What languages will be used?", a: "Each panel is conducted in one language: Portuguese, English, or Spanish. Check the schedule for details." },
+                { q: "Will sessions be recorded?", a: "Yes, all talks will remain available on YouTube after the event." },
+                { q: "How can I ask questions?", a: "Live Q&A via YouTube chat during each panel." }
+            ],
+            previewSchedule: "📺 Watch Live →", previewSpeakers: "👥 Meet the Speakers →", liveStreamTitle: "🎥 Opening Ceremony Live",
+            tickerMsg: "🌍 LIVE from Aracaju-SE • 10+ Countries • 30+ Speakers • AI in Education & Linguistics • Free & Open • April 23-24, 2026 •",
+            speakersTitle: "🌟 30+ International Speakers", infoTitle: "ℹ️ About the Symposium",
+            infoContent: "The TECLA Symposium is organized by the Research Group 'Tecnologias, Educação e Linguística Aplicada' (TECLA) at the Federal University of Sergipe (UFS). Our goal: foster accessible, cross-lingual debates on how artificial intelligence transforms educational, linguistic and social practices. No bureaucratic barriers – just knowledge sharing. Each panel will be held entirely in Portuguese, English or Spanish, with live interaction.",
+            contactTitle: "📬 Hosted by", contactDetails: "**TECLA Research Group** – Tecnologias, Educação e Linguística Aplicada\nUniversidade Federal de Sergipe (UFS)\n\n📧 tecla.symposium@ufs.br\n📍 Virtual venue: YouTube (watch live below)",
+            guidingQuestion: "✨ Guiding question: *How is artificial intelligence transforming educational, linguistic, and/or social practices in your country or field of research, and what challenges emerge from this process?*",
+            watchNow: "Watch Live", language: "Language"
+        },
+        pt: {
+            tabHome: "🏠 Início", tabSchedule: "📅 Assistir Ao Vivo", tabInfo: "ℹ️ Informações", tabSpeakers: "🎤 Palestrantes", tabContact: "📬 Contato",
+            heroTitle: "Simpósio Global sobre IA e Educação", heroDate: "23–24 de abril de 2026 • Ao vivo de Aracaju, Brasil",
+            symposiumInfo: "Pesquisadores de diferentes partes do mundo se reúnem para discutir Inteligência Artificial e seus impactos na educação, na linguagem e na sociedade. 12 sessões ao vivo (10 mesas + abertura/encerramento) em português, inglês e espanhol. Gratuito, sem inscrição.",
+            faqTitle: "❓ Perguntas Frequentes", faq: [
+                { q: "Preciso me inscrever?", a: "Não é necessária inscrição prévia. 100% gratuito e aberto." },
+                { q: "Quais idiomas serão usados?", a: "Cada mesa será realizada em um idioma: português, inglês ou espanhol. Confira a programação." },
+                { q: "As sessões serão gravadas?", a: "Sim, todas as palestras ficarão disponíveis no YouTube após o evento." },
+                { q: "Como posso fazer perguntas?", a: "Perguntas ao vivo via chat do YouTube durante cada mesa." }
+            ],
+            previewSchedule: "📺 Assistir Ao Vivo →", previewSpeakers: "👥 Conheça os Palestrantes →", liveStreamTitle: "🎥 Cerimônia de Abertura ao Vivo",
+            tickerMsg: "🌍 AO VIVO de Aracaju-SE • 10+ Países • 30+ Palestrantes • IA na Educação e Linguística • Gratuito • 23-24 de abril de 2026 •",
+            speakersTitle: "🌟 Mais de 30 Palestrantes Internacionais", infoTitle: "ℹ️ Sobre o Simpósio",
+            infoContent: "O Simpósio TECLA é organizado pelo Grupo de Pesquisa 'Tecnologias, Educação e Linguística Aplicada' (TECLA) da Universidade Federal de Sergipe (UFS). Nosso objetivo: promover debates acessíveis e multilíngues sobre como a IA transforma práticas educacionais, linguísticas e sociais. Sem burocracia – apenas compartilhamento de conhecimento. Cada mesa será realizada inteiramente em português, inglês ou espanhol, com interação ao vivo.",
+            contactTitle: "📬 Realização", contactDetails: "**Grupo de Pesquisa TECLA** – Tecnologias, Educação e Linguística Aplicada\nUniversidade Federal de Sergipe (UFS)\n\n📧 tecla.symposium@ufs.br\n📍 Local virtual: YouTube (assista abaixo)",
+            guidingQuestion: "✨ Pergunta norteadora: *Como a inteligência artificial está transformando as práticas educacionais, linguísticas e/ou sociais em seu país ou área de pesquisa, e quais desafios emergem desse processo?*",
+            watchNow: "Assistir Ao Vivo", language: "Idioma"
+        },
+        es: {
+            tabHome: "🏠 Inicio", tabSchedule: "📅 Ver En Vivo", tabInfo: "ℹ️ Información", tabSpeakers: "🎤 Oradores", tabContact: "📬 Contacto",
+            heroTitle: "Simposio Global sobre IA y Educación", heroDate: "23–24 de abril de 2026 • En vivo desde Aracaju, Brasil",
+            symposiumInfo: "Investigadores de distintas partes del mundo se reunirán para debatir sobre la Inteligencia Artificial y su impacto en la educación, el lenguaje y la sociedad. 12 sesiones en vivo (10 mesas + apertura/clausura) en portugués, inglés y español. Gratuito, sin inscripción.",
+            faqTitle: "❓ Preguntas Frecuentes", faq: [
+                { q: "¿Necesito registrarme?", a: "No se necesita registro previo. 100% gratuito y abierto." },
+                { q: "¿Qué idiomas se usarán?", a: "Cada mesa se realizará en un idioma: portugués, inglés o español. Consulta el programa." },
+                { q: "¿Se grabarán las sesiones?", a: "Sí, todas las charlas estarán disponibles en YouTube después del evento." },
+                { q: "¿Cómo puedo hacer preguntas?", a: "Preguntas en vivo a través del chat de YouTube durante cada mesa." }
+            ],
+            previewSchedule: "📺 Ver En Vivo →", previewSpeakers: "👥 Conoce a los Oradores →", liveStreamTitle: "🎥 Ceremonia de Apertura en Vivo",
+            tickerMsg: "🌍 EN VIVO desde Aracaju-SE • 10+ Países • 30+ Oradores • IA en Educación y Lingüística • Gratuito • 23-24 de abril de 2026 •",
+            speakersTitle: "🌟 Más de 30 Oradores Internacionales", infoTitle: "ℹ️ Sobre el Simposio",
+            infoContent: "El Simposio TECLA es organizado por el Grupo de Investigación 'Tecnologías, Educación y Lingüística Aplicada' (TECLA) de la Universidad Federal de Sergipe (UFS). Nuestro objetivo: fomentar debates accesibles y multilingües sobre cómo la IA transforma las prácticas educativas, lingüísticas y sociales. Sin barreras burocráticas. Cada mesa se realizará completamente en portugués, inglés o español, con interacción en vivo.",
+            contactTitle: "📬 Organizado por", contactDetails: "**Grupo de Investigación TECLA** – Tecnologías, Educación y Lingüística Aplicada\nUniversidad Federal de Sergipe (UFS)\n\n📧 tecla.symposium@ufs.br\n📍 Sede virtual: YouTube (mira en vivo abajo)",
+            guidingQuestion: "✨ Pregunta guía: *¿Cómo está transformando la inteligencia artificial las prácticas educativas, lingüísticas y/o sociales en su país o campo de investigación, y qué desafíos surgen de este proceso?*",
+            watchNow: "Ver En Vivo", language: "Idioma"
+        }
+    };
+
+    // ========== SESSIONS (UPDATED with correct times, languages, speakers, mediators) ==========
+    const sessions = [
+        // DAY 1 – Thursday, April 23, 2026
+        { 
+            day: 1, time: "09:00 - 10:00", ytId: "CJRZ9Gkmpbg", lang: "pt",
+            titleEn: "Opening Ceremony", titlePt: "Cerimônia de Abertura", titleEs: "Ceremonia de Apertura",
+            descEn: "Opening remarks by Prof. Paulo Boa Sorte, with presence of University board, DLES and PPGED. Followed by keynote conference with Nina da Hora (Unicamp / Instituto da Hora). Mediation: Paulo Boa Sorte.",
+            descPt: "Abertura com Prof. Paulo Boa Sorte, com presença da Reitoria, DLES e PPGED. Em seguida, conferência de abertura com Nina da Hora (Unicamp / Instituto da Hora). Mediação: Paulo Boa Sorte.",
+            descEs: "Apertura con el Prof. Paulo Boa Sorte, con presencia del Rectorado, DLES y PPGED. A continuación, conferencia de apertura con Nina da Hora (Unicamp / Instituto da Hora). Moderación: Paulo Boa Sorte."
+        },
+        { 
+            day: 1, time: "10:00 - 12:00", ytId: "G3uj3tgZIDI", lang: "en",
+            titleEn: "Panel 1: AI & Global Education Policies", titlePt: "Mesa 1: IA e Políticas Educacionais Globais", titleEs: "Mesa 1: IA y Políticas Educativas Globales",
+            descEn: "Speakers: Luciana C. de Oliveira (VCU, USA), Raúl Mora (Colombia/Norway), Gurumurthy Kasinathan (IT for Change, India). Mediator: Karoline Garcez. Panel leaders: Anthony (lead), Mikaelle (deputy).",
+            descPt: "Palestrantes: Luciana C. de Oliveira (VCU, EUA), Raúl Mora (Colômbia/Noruega), Gurumurthy Kasinathan (IT for Change, Índia). Mediador: Karoline Garcez. Líderes do painel: Anthony (titular), Mikaelle (suplente).",
+            descEs: "Ponentes: Luciana C. de Oliveira (VCU, EE. UU.), Raúl Mora (Colombia/Noruega), Gurumurthy Kasinathan (IT for Change, India). Moderador: Karoline Garcez. Líderes de mesa: Anthony (titular), Mikaelle (suplente)."
+        },
+        { 
+            day: 1, time: "12:00 - 14:00", ytId: "ukahuBEesqE", lang: "en",
+            titleEn: "Panel 2: Multilingualism & Digital Inclusion", titlePt: "Mesa 2: Multilinguismo e Inclusão Digital", titleEs: "Mesa 2: Multilingüismo e Inclusión Digital",
+            descEn: "Speakers: Ethan Trinh (Georgia State University, USA), Jefferson Santos (UEFS, Brazil), Letícia Moraes (UFPB). Mediator: Everton. Panel leaders: Clayton (lead), Anthony (deputy).",
+            descPt: "Palestrantes: Ethan Trinh (Georgia State University, EUA), Jefferson Santos (UEFS, Brasil), Letícia Moraes (UFPB). Mediador: Everton. Líderes do painel: Clayton (titular), Anthony (suplente).",
+            descEs: "Ponentes: Ethan Trinh (Georgia State University, EE. UU.), Jefferson Santos (UEFS, Brasil), Letícia Moraes (UFPB). Moderador: Everton. Líderes de mesa: Clayton (titular), Anthony (suplente)."
+        },
+        { 
+            day: 1, time: "14:00 - 16:00", ytId: "J-vGcivSqNA", lang: "pt",
+            titleEn: "Panel 3: Teacher Training & Digital Technologies", titlePt: "Mesa 3: Formação Docente e Tecnologias Digitais", titleEs: "Mesa 3: Formación Docente y Tecnologías Digitales",
+            descEn: "Speakers: Eliane Azzari (PUC-Camp), Emanoel Pedro (UESPI), Rafael Vetromille (UFPel). Mediator: Laila Gardênia. Panel leaders: Eduardo (lead), Flávia Chiara (deputy).",
+            descPt: "Palestrantes: Eliane Azzari (PUC-Camp), Emanoel Pedro (UESPI), Rafael Vetromille (UFPel). Mediador: Laila Gardênia. Líderes do painel: Eduardo (titular), Flávia Chiara (suplente).",
+            descEs: "Ponentes: Eliane Azzari (PUC-Camp), Emanoel Pedro (UESPI), Rafael Vetromille (UFPel). Moderador: Laila Gardênia. Líderes de mesa: Eduardo (titular), Flávia Chiara (suplente)."
+        },
+        { 
+            day: 1, time: "16:00 - 18:00", ytId: "3ndzGPgpghk", lang: "pt",
+            titleEn: "Panel 4: Critical Pedagogy & AI", titlePt: "Mesa 4: Pedagogia Crítica e IA", titleEs: "Mesa 4: Pedagogía Crítica e IA",
+            descEn: "Speakers: Cíntia Rabello (UFF), Rodrigo Aragão (UESC), Eduardo Moura (Unicamp). Mediator: Anne Alilma. Panel leaders: Rafaela (lead), Jennifer Chris (deputy).",
+            descPt: "Palestrantes: Cíntia Rabello (UFF), Rodrigo Aragão (UESC), Eduardo Moura (Unicamp). Mediador: Anne Alilma. Líderes do painel: Rafaela (titular), Jennifer Chris (suplente).",
+            descEs: "Ponentes: Cíntia Rabello (UFF), Rodrigo Aragão (UESC), Eduardo Moura (Unicamp). Moderador: Anne Alilma. Líderes de mesa: Rafaela (titular), Jennifer Chris (suplente)."
+        },
+        { 
+            day: 1, time: "18:00 - 20:00", ytId: "Px-M3SucDXI", lang: "pt",
+            titleEn: "Panel 5: Applied Linguistics & Digital Culture", titlePt: "Mesa 5: Linguística Aplicada e Cultura Digital", titleEs: "Mesa 5: Lingüística Aplicada y Cultura Digital",
+            descEn: "Speakers: Lilia Gonçalves (UNIGRANRIO), Kleber Silva (UnB), Barbara Gallardo (Unemat). Mediator: Cristiano Mezzaroba. Panel leaders: Josiane (lead), Laila (deputy).",
+            descPt: "Palestrantes: Lilia Gonçalves (UNIGRANRIO), Kleber Silva (UnB), Barbara Gallardo (Unemat). Mediador: Cristiano Mezzaroba. Líderes do painel: Josiane (titular), Laila (suplente).",
+            descEs: "Ponentes: Lilia Gonçalves (UNIGRANRIO), Kleber Silva (UnB), Barbara Gallardo (Unemat). Moderador: Cristiano Mezzaroba. Líderes de mesa: Josiane (titular), Laila (suplente)."
+        },
+        // DAY 2 – Friday, April 24, 2026
+        { 
+            day: 2, time: "07:00 - 09:00", ytId: "xF7cLwDZsk8", lang: "en",
+            titleEn: "Panel 6: AI-Assisted Language Learning", titlePt: "Mesa 6: Aprendizagem de Línguas Assistida por IA", titleEs: "Mesa 6: Aprendizaje de Idiomas Asistido por IA",
+            descEn: "Speakers: Victor Zhe Zhang (Macao Polytechnic University, China), John Pike (Adelaide University, Australia), Allessandra Elisabeth (TECLA/UFS). Mediator: Deborah Gonçalves. Panel leaders: Flávia Chiara (lead), Eduardo (deputy).",
+            descPt: "Palestrantes: Victor Zhe Zhang (Universidade Politécnica de Macau, China), John Pike (Universidade de Adelaide, Austrália), Allessandra Elisabeth (TECLA/UFS). Mediador: Deborah Gonçalves. Líderes do painel: Flávia Chiara (titular), Eduardo (suplente).",
+            descEs: "Ponentes: Victor Zhe Zhang (Universidad Politécnica de Macao, China), John Pike (Universidad de Adelaide, Australia), Allessandra Elisabeth (TECLA/UFS). Moderador: Deborah Gonçalves. Líderes de mesa: Flávia Chiara (titular), Eduardo (suplente)."
+        },
+        { 
+            day: 2, time: "09:00 - 11:00", ytId: "bBFTHzgUp0g", lang: "pt",
+            titleEn: "Panel 7: Pedagogical Innovation & AI", titlePt: "Mesa 7: Inovação Pedagógica e IA", titleEs: "Mesa 7: Innovación Pedagógica e IA",
+            descEn: "Speakers: Paulo Brazão (UMa), Leonardo Zenha (UFPA), Aires Mombassa (Eduardo Mondlane University, Mozambique). Mediator: Henrique Schneider. Panel leaders: Jayne (lead), Mikaelle (deputy).",
+            descPt: "Palestrantes: Paulo Brazão (UMa), Leonardo Zenha (UFPA), Aires Mombassa (Universidade Eduardo Mondlane, Moçambique). Mediador: Henrique Schneider. Líderes do painel: Jayne (titular), Mikaelle (suplente).",
+            descEs: "Ponentes: Paulo Brazão (UMa), Leonardo Zenha (UFPA), Aires Mombassa (Universidad Eduardo Mondlane, Mozambique). Moderador: Henrique Schneider. Líderes de mesa: Jayne (titular), Mikaelle (suplente)."
+        },
+        { 
+            day: 2, time: "11:00 - 13:00", ytId: "CQo__x99u24", lang: "es",
+            titleEn: "Panel 8: AI & Social Transformation in Latin America", titlePt: "Mesa 8: IA e Transformação Social na América Latina", titleEs: "Mesa 8: IA y Transformación Social en América Latina",
+            descEn: "Speakers: Adriana Pérez Cedeño (Universidad del Norte, Colombia), Nuria Lloret (Polytechnic University of Valencia, Spain), Wilder Escobar (Universidad el Bosque, Colombia). Mediator: Joyce Colaça. Panel leaders: Flávia Chiara (lead), Inês (deputy).",
+            descPt: "Palestrantes: Adriana Pérez Cedeño (Universidad del Norte, Colômbia), Nuria Lloret (Universidade Politécnica de Valência, Espanha), Wilder Escobar (Universidad el Bosque, Colômbia). Mediador: Joyce Colaça. Líderes do painel: Flávia Chiara (titular), Inês (suplente).",
+            descEs: "Ponentes: Adriana Pérez Cedeño (Universidad del Norte, Colombia), Nuria Lloret (Universidad Politécnica de Valencia, España), Wilder Escobar (Universidad el Bosque, Colombia). Moderador: Joyce Colaça. Líderes de mesa: Flávia Chiara (titular), Inês (suplente)."
+        },
+        { 
+            day: 2, time: "14:00 - 16:00", ytId: "MgKkDdIKvH0", lang: "en",
+            titleEn: "Panel 9: Digital Writing & Assessment Technologies", titlePt: "Mesa 9: Tecnologias de Escrita e Avaliação Digital", titleEs: "Mesa 9: Tecnologías de Escritura y Evaluación Digital",
+            descEn: "Speakers: Ana Karina Nascimento (UFS), Rodrigo Abrantes (Dante/UFS), Bill Cope (University of Illinois). Mediator: Raimundo Santana. Panel leaders: Anthony (lead), Deborah (deputy).",
+            descPt: "Palestrantes: Ana Karina Nascimento (UFS), Rodrigo Abrantes (Dante/UFS), Bill Cope (University of Illinois). Mediador: Raimundo Santana. Líderes do painel: Anthony (titular), Deborah (suplente).",
+            descEs: "Ponentes: Ana Karina Nascimento (UFS), Rodrigo Abrantes (Dante/UFS), Bill Cope (University of Illinois). Moderador: Raimundo Santana. Líderes de mesa: Anthony (titular), Deborah (suplente)."
+        },
+        { 
+            day: 2, time: "16:00 - 18:00", ytId: "yM_PCyZ4jYI", lang: "pt",
+            titleEn: "Panel 10: History, Media & Network Analysis", titlePt: "Mesa 10: História, Mídia e Análise de Redes", titleEs: "Mesa 10: Historia, Medios y Análisis de Redes",
+            descEn: "Speakers: Janaína Mello (UFS), Débora Arruda (UECE), Raquel Recuero (UFPel). Mediator: Simone Lucena. Panel leaders: Raimundo (lead), Jayne (deputy).",
+            descPt: "Palestrantes: Janaína Mello (UFS), Débora Arruda (UECE), Raquel Recuero (UFPel). Mediador: Simone Lucena. Líderes do painel: Raimundo (titular), Jayne (suplente).",
+            descEs: "Ponentes: Janaína Mello (UFS), Débora Arruda (UECE), Raquel Recuero (UFPel). Moderador: Simone Lucena. Líderes de mesa: Raimundo (titular), Jayne (suplente)."
+        },
+        { 
+            day: 2, time: "18:30 - 19:30", ytId: "KOTwEgFjjRk", lang: "pt",
+            titleEn: "Closing Conference", titlePt: "Conferência de Encerramento", titleEs: "Conferencia de Clausura",
+            descEn: "Closing conference with Júlio Araújo (UFC). Mediation: Paulo Boa Sorte. Panel leaders: Everton (lead), Clayton (deputy).",
+            descPt: "Conferência de encerramento com Júlio Araújo (UFC). Mediação: Paulo Boa Sorte. Líderes do painel: Everton (titular), Clayton (suplente).",
+            descEs: "Conferencia de clausura con Júlio Araújo (UFC). Moderación: Paulo Boa Sorte. Líderes de mesa: Everton (titular), Clayton (suplente)."
+        }
+    ];
+
+    // ========== SPEAKERS DATA (30 speakers, alphabetical by first name, with full EN/PT/ES translations) ==========
+    const speakersData = [
+        { nameEn: "Adriana Pérez", namePt: "Adriana Pérez", nameEs: "Adriana Pérez", roleEn: "Discourse Analysis & Digital Literacy", rolePt: "Análise do Discurso & Letramento Digital", roleEs: "Análisis del Discurso & Alfabetización Digital", bioEn: "Distinguished academic and researcher in discourse analysis and critical discourse studies, language studies, and language teaching and learning in university contexts. Her current research focuses on examining the level of digital teaching competence and digital literacy, exploring how technologies and AI are used and perceived in the composition and editing of academic-scientific texts and how they are integrated into university teaching and learning.", bioPt: "Acadêmica e pesquisadora destacada na área de análise do discurso e análise crítica do discurso, estudos da linguagem e ensino e aprendizagem de línguas em contextos universitários. Atualmente, sua pesquisa se concentra em examinar o nível de competência digital docente e letramento digital, explorando como as tecnologias e IAs são usadas e percebidas na composição e edição de textos acadêmico-científicos e como são integradas ao ensino e aprendizagem na universidade.", bioEs: "Académica e investigadora destacada en el análisis del discurso y el análisis crítico del discurso, los estudios del lenguaje y la enseñanza y aprendizaje del lenguaje en contextos universitarios. Actualmente, su investigación se centra en examinar el nivel de competencia digital docente y la alfabetización digital, explorando cómo se utilizan y perciben las tecnologías y las IA en la composición y edición de textos académico-científicos y cómo se integran en la enseñanza y el aprendizaje universitario." },
+        { nameEn: "Aires Bonifácio Mombassa", namePt: "Aires Bonifácio Mombassa", nameEs: "Aires Bonifácio Mombassa", roleEn: "Educational Leadership & Distance Education", rolePt: "Liderança Educacional & Educação a Distância", roleEs: "Liderazgo Educativo & Educación a Distancia", bioEn: "PhD in Education from the Federal University of Minas Gerais (2020). Master's in Public Education Management and Evaluation from the Federal University of Juiz de Fora (2013). Degree in Education Administration from Pedagogical University - Mozambique (2009). Experience in Education, with emphasis on School Administration and Distance Education, focusing on leadership and coordination, culture, innovation and organizational change, evaluation and quality in distance education, and analysis of organizational structure of distance education. Currently coordinates the PhD in Education program at the Faculty of Education (FACED), Eduardo Mondlane University.", bioPt: "Doutor em Educação pela Universidade Federal de Minas Gerais (2020). Mestre em Gestão e Avaliação da Educação Pública pela Universidade Federal de Juiz de Fora (2013). Licenciado em Administração da Educação pela Universidade Pedagógica - Moçambique (2009). Tem experiência na área de Educação, com ênfase em Administração Escolar e Educação a Distância, atuando principalmente nos temas: liderança e coordenação, cultura, inovação e mudança organizacional, avaliação e qualidade na educação a distância e análise da estrutura organizacional da educação a distância. Atualmente coordena o curso de Doutoramento em Educação na Faculdade de Educação (FACED) da Universidade Eduardo Mondlane.", bioEs: "Doctor en Educación por la Universidad Federal de Minas Gerais (2020). Maestría en Gestión y Evaluación de la Educación Pública por la Universidad Federal de Juiz de Fora (2013). Licenciado en Administración Educativa por la Universidad Pedagógica - Mozambique (2009). Experiencia en Educación, con énfasis en Administración Escolar y Educación a Distancia, centrándose en liderazgo y coordinación, cultura, innovación y cambio organizacional, evaluación y calidad en educación a distancia, y análisis de la estructura organizativa de la educación a distancia. Actualmente coordina el programa de Doctorado en Educación en la Facultad de Educación (FACED) de la Universidad Eduardo Mondlane." },
+        { nameEn: "Allessandra Elisabeth dos Santos", namePt: "Allessandra Elisabeth dos Santos", nameEs: "Allessandra Elisabeth dos Santos", roleEn: "TESOL & Generative AI in Writing", rolePt: "TESOL & IA Generativa na Escrita", roleEs: "TESOL & IA Generativa en la Escritura", bioEn: "English teacher and researcher with a PhD in Education from the Federal University of Sergipe (UFS), Brazil. Her research focuses on Generative Artificial Intelligence and its impact on writing. She is vice-leader of the TECLA research group (CNPq/UFS) and was a visiting research scholar at Virginia Commonwealth University (VCU), USA. Dr. dos Santos also holds a Master's degree in Education from UFS and a Post-Baccalaureate Diploma in Education from the University of Winnipeg, Canada. With 29 years of experience in TESOL/TEFL, she has worked as a teacher, teacher educator, and academic coordinator.", bioPt: "Professora de inglês e pesquisadora com doutorado em Educação pela Universidade Federal de Sergipe (UFS), Brasil. Sua pesquisa foca na Inteligência Artificial Generativa e seu impacto na escrita. É vice-líder do grupo de pesquisa TECLA (CNPq/UFS) e foi pesquisadora visitante na Virginia Commonwealth University (VCU), EUA. A Dra. Santos também possui mestrado em Educação pela UFS e diploma de pós-graduação em Educação pela University of Winnipeg, Canadá. Com 29 anos de experiência em TESOL/TEFL, atuou como professora, formadora de professores e coordenadora acadêmica.", bioEs: "Profesora de inglés e investigadora con doctorado en Educación por la Universidad Federal de Sergipe (UFS), Brasil. Su investigación se centra en la Inteligencia Artificial Generativa y su impacto en la escritura. Es vice-líder del grupo de investigación TECLA (CNPq/UFS) y fue investigadora visitante en Virginia Commonwealth University (VCU), EE. UU. La Dra. Santos también tiene una maestría en Educación de la UFS y un diploma de posgrado en Educación de la University of Winnipeg, Canadá. Con 29 años de experiencia en TESOL/TEFL, ha trabajado como profesora, formadora de docentes y coordinadora académica." },
+        { nameEn: "Ana Karina de Oliveira Nascimento", namePt: "Ana Karina de Oliveira Nascimento", nameEs: "Ana Karina de Oliveira Nascimento", roleEn: "Multiliteracies & Teacher Education", rolePt: "Multiletramentos & Formação de Professores", roleEs: "Multialfabetizaciones & Formación Docente", bioEn: "Professor in the Department of Foreign Languages and the Graduate Program in Languages at the Federal University of Sergipe (UFS), Brazil. PhD in Languages from the University of São Paulo (USP), including a CAPES/Fulbright grant at Montclair State University, USA. Postdoctoral fellowship at the University of Illinois Urbana-Champaign (CNPq). Leads the Linc research group at UFS. Research interests include new/digital/multi literacies, teacher education, digital colonialism, platformization, and generative artificial intelligence.", bioPt: "Professor do Departamento de Letras Estrangeiras e do Programa de Pós-Graduação em Letras da Universidade Federal de Sergipe (UFS), Brasil. Doutor em Letras pela Universidade de São Paulo (USP), com estágio CAPES/Fulbright na Montclair State University, EUA. Pós-doutorado na University of Illinois Urbana-Champaign (CNPq). Líder do grupo de pesquisa Linc na UFS. Interesses de pesquisa incluem novos/ digitais/ multiletramentos, formação de professores, colonialismo digital, plataformização e inteligência artificial generativa.", bioEs: "Profesor del Departamento de Lenguas Extranjeras y del Programa de Posgrado en Lenguas de la Universidad Federal de Sergipe (UFS), Brasil. Doctor en Letras por la Universidad de São Paulo (USP), con beca CAPES/Fulbright en Montclair State University, EE. UU. Posdoctorado en la University of Illinois Urbana-Champaign (CNPq). Líder del grupo de investigación Linc en la UFS. Sus intereses de investigación incluyen nuevas/ digitales/ multialfabetizaciones, formación docente, colonialismo digital, plataformización e inteligencia artificial generativa." },
+        { nameEn: "Bárbara Cristina Gallardo", namePt: "Bárbara Cristina Gallardo", nameEs: "Bárbara Cristina Gallardo", roleEn: "Applied Linguistics & Digital Literacies", rolePt: "Linguística Aplicada & Letramentos Digitais", roleEs: "Lingüística Aplicada & Alfabetizaciones Digitales", bioEn: "Adjunct professor at the University of the State of Mato Grosso (UNEMAT), teaching in undergraduate Letters and graduate Linguistics programs, in Applied Linguistics and additional language teacher education. Holds a PhD in Applied Linguistics from IEL/Unicamp (2013) with a Fulbright internship at UT Austin. Leads the research group Language, Technology and Contemporaneity in Applied Linguistics. Research interests include digital literacies, language teacher education, technology-mediated languages, AI in writing and language teaching with focus on authorship, pedagogical practices and critical literacy.", bioPt: "Professora adjunta da Universidade do Estado de Mato Grosso (UNEMAT), atua nos cursos de graduação em Letras e na pós-graduação em Linguística, na área de Linguística Aplicada e formação de professores de línguas adicionais. Doutora em Linguística Aplicada pelo IEL/Unicamp (2013) com estágio Fulbright na UT Austin. Lidera o grupo de pesquisa Linguagem, Tecnologia e Contemporaneidade em Linguística Aplicada. Seus interesses de pesquisa incluem letramentos digitais, formação de professores de línguas, linguagens mediadas por tecnologias, IA na escrita e no ensino de línguas com foco em autoria, práticas pedagógicas e letramento crítico.", bioEs: "Profesora adjunta de la Universidad del Estado de Mato Grosso (UNEMAT), trabaja en cursos de grado en Letras y posgrado en Lingüística, en Lingüística Aplicada y formación de docentes de lenguas adicionales. Doctora en Lingüística Aplicada por IEL/Unicamp (2013) con pasantía Fulbright en UT Austin. Lidera el grupo de investigación Lenguaje, Tecnología y Contemporaneidad en Lingüística Aplicada. Sus intereses de investigación incluyen alfabetizaciones digitales, formación de docentes de idiomas, lenguajes mediados por tecnologías, IA en escritura y enseñanza de idiomas con enfoque en autoría, prácticas pedagógicas y alfabetización crítica." },
+        { nameEn: "Bill Cope", namePt: "Bill Cope", nameEs: "Bill Cope", roleEn: "Digital Writing & Assessment Technologies", rolePt: "Tecnologias de Escrita e Avaliação Digital", roleEs: "Tecnologías de Escritura y Evaluación Digital", bioEn: "Professor in the Department of Education Policy, Organization & Leadership, University of Illinois, Urbana-Champaign. His and Mary Kalantzis' recent research has focused on the development of digital writing and assessment technologies, with the support of a number of major grants from the US Department of Education, the Bill and Melinda Gates Foundation and the National Science Foundation. He has co-authored or co-edited with Mary Kalantzis: New Learning: Elements of a Science of Education, Cambridge University Press, 2008 (3rd edition, 2022); Literacies, Cambridge University Press 2012 (2nd edition, 2016); and the two volume grammar of multimodal meaning: Making Sense and Adding Sense, Cambridge University Press, 2020. His recent research has focused on artificial intelligence, both in semiotic theory and education practice.", bioPt: "Professor no Departamento de Política, Organização e Liderança Educacional da Universidade de Illinois, Urbana-Champaign. Sua pesquisa recente, em parceria com Mary Kalantzis, concentrou-se no desenvolvimento de tecnologias digitais de escrita e avaliação, com apoio de grandes subsídios do Departamento de Educação dos EUA, da Fundação Bill e Melinda Gates e da National Science Foundation. Coautor ou coeditor com Mary Kalantzis de: New Learning: Elements of a Science of Education, Cambridge University Press, 2008 (3ª edição, 2022); Literacies, Cambridge University Press 2012 (2ª edição, 2016); e a gramática de dois volumes do significado multimodal: Making Sense e Adding Sense, Cambridge University Press, 2020. Sua pesquisa recente tem focado na inteligência artificial, tanto na teoria semiótica quanto na prática educacional.", bioEs: "Profesor en el Departamento de Política, Organización y Liderazgo Educativo de la Universidad de Illinois, Urbana-Champaign. Su investigación reciente, junto con Mary Kalantzis, se ha centrado en el desarrollo de tecnologías digitales de escritura y evaluación, con el apoyo de importantes subvenciones del Departamento de Educación de EE. UU., la Fundación Bill y Melinda Gates y la National Science Foundation. Coautor o coeditor con Mary Kalantzis de: New Learning: Elements of a Science of Education, Cambridge University Press, 2008 (3ª edición, 2022); Literacies, Cambridge University Press 2012 (2ª edición, 2016); y la gramática de dos volúmenes del significado multimodal: Making Sense y Adding Sense, Cambridge University Press, 2020. Su investigación reciente se ha centrado en la inteligencia artificial, tanto en la teoría semiótica como en la práctica educativa." },
+        { nameEn: "Cíntia Rabello", namePt: "Cíntia Rabello", nameEs: "Cíntia Rabello", roleEn: "Language Teacher Education & Digital Technologies", rolePt: "Formação de Professores de Línguas & Tecnologias Digitais", roleEs: "Formación de Profesores de Idiomas & Tecnologías Digitales", bioEn: "Licensed in Letters, Master in Educational Technology in Sciences and Health, and PhD in Applied Linguistics. Professor of English at the Institute of Letters, Federal Fluminense University (UFF) and faculty in the Graduate Program in Language Studies. Leader of the CNPq/UFF Research Group GETEAL and coordinator of L@bLíngu@s-GLE/UFF. Member of the Innovation and Curriculum Advisory Program (PROIAC/PROGRAD-UFF) and the ANPOLL Language and Technology GT. Coordinator of the Letters, Linguistics and Arts area of the UFF AI GT. Researches initial and continuing teacher education, technology-mediated teaching, and artificial intelligence in education.", bioPt: "Licenciada em Letras, Mestre em Tecnologia Educacional nas Ciências e na Saúde, e Doutora em Linguística Aplicada. Professora de Língua Inglesa no Instituto de Letras da Universidade Federal Fluminense (UFF) e docente no Programa de Pós-Graduação em Estudos de Linguagem. Líder do Grupo de Pesquisa CNPq/UFF GETEAL e coordenadora do L@bLíngu@s-GLE/UFF. Membro do Programa de Inovação e Assessoria Curricular (PROIAC/PROGRAD-UFF) e do GT de Linguagem e Tecnologia da ANPOLL. Coordenadora da área de Letras, Linguística e Artes do GT de Inteligência Artificial da UFF. Pesquisa temas como formação inicial e continuada de professores, ensino mediado por tecnologias digitais e inteligência artificial na educação.", bioEs: "Licenciada en Letras, Maestría en Tecnología Educativa en Ciencias y Salud, y Doctora en Lingüística Aplicada. Profesora de Inglés en el Instituto de Letras de la Universidad Federal Fluminense (UFF) y profesora en el Programa de Posgrado en Estudios del Lenguaje. Líder del Grupo de Investigación CNPq/UFF GETEAL y coordinadora de L@bLíngu@s-GLE/UFF. Miembro del Programa de Innovación y Asesoría Curricular (PROIAC/PROGRAD-UFF) y del GT de Lenguaje y Tecnología de ANPOLL. Coordinadora del área de Letras, Lingüística y Artes del GT de Inteligencia Artificial de la UFF. Investiga formación inicial y continua de profesores, enseñanza mediada por tecnologías digitales e inteligencia artificial en educación." },
+        { nameEn: "Débora Liberato Arruda", namePt: "Débora Liberato Arruda", nameEs: "Débora Liberato Arruda", roleEn: "Media Education & Multiliteracies", rolePt: "Educação Midiática & Multiletramentos", roleEs: "Educación Mediática & Multialfabetizaciones", bioEn: "PhD in Applied Linguistics. Professor at the Graduate Program in Applied Linguistics (PosLA) and the Letters course at the State University of Ceará (UECE). Vice-leader of the Language, Teaching and Technology Research Group (Lent). Coordinator of the EXMID Media Education Extension Project in the Central Sertão of Ceará. Member of the ANPOLL Language and Technology GT. Editor of Linguagem em Foco journal. Areas of interest: Media Education, Multiliteracies, Reading and production in digital media, (Dis)information ecosystem in digital media, Discursive manipulation, Algorithmic curation, Platformization, Generative Artificial Intelligence.", bioPt: "Doutora em Linguística Aplicada. Professora do Programa de pós-graduação em Linguística Aplicada (PosLA) e do curso de Letras da Universidade Estadual do Ceará (UECE). Vice-líder do Grupo de Pesquisa Linguagem, Ensino e Tecnologia (Lent). Coordenadora do Projeto de Extensão EXMID de Educação Midiática no Sertão Central do Ceará. Participante do GT Linguagem e tecnologia da ANPOLL. Editora da Revista Linguagem em Foco. Áreas de interesse: Educação Midiática, Multiletramentos, Leitura e produção nas mídias digitais, Ecossistema da (des)informação nas mídias digitais, Manipulação discursiva, Curadoria Algorítmica, Plataformização, Inteligência Artificial Generativa.", bioEs: "Doctora en Lingüística Aplicada. Profesora del Programa de Posgrado en Lingüística Aplicada (PosLA) y del curso de Letras de la Universidad Estadual de Ceará (UECE). Vice-líder del Grupo de Investigación Lenguaje, Enseñanza y Tecnología (Lent). Coordinadora del Proyecto de Extensión EXMID de Educación Mediática en el Sertón Central de Ceará. Miembro del GT de Lenguaje y Tecnología de ANPOLL. Editora de la Revista Linguagem em Foco. Áreas de interés: Educación Mediática, Multialfabetizaciones, Lectura y producción en medios digitales, Ecosistema de (des)información en medios digitales, Manipulación discursiva, Curación algorítmica, Plataformización, Inteligencia Artificial Generativa." },
+        { nameEn: "Eduardo Moura", namePt: "Eduardo Moura", nameEs: "Eduardo Moura", roleEn: "AI Engineering & Critical Literacies", rolePt: "Engenharia de IA & Letramentos Críticos", roleEs: "Ingeniería de IA & Alfabetizaciones Críticas", bioEn: "PhD in Applied Linguistics (Unicamp) and AI Research Engineer at Kunumi. Member of the Center for Critical Studies in AI and Language (Neural). Solid background in digital education and development of teaching materials. Expertise focuses on teacher education for multiliteracies and Remix Studies, combining cutting-edge technological development with research in digital humanities, ethics and critical literacies. Postdoctoral fellow at USP and internship at Penn State, author of publications on media and technologies, member of the Ethics and Education team of the 'Understanding Artificial Intelligence (UAI)' program at IEA-USP.", bioPt: "Professor Doutor em Linguística Aplicada (Unicamp) e Engenheiro Pesquisador de IA na Kunumi. Membro do Núcleo de Estudos Críticos em IA e Linguagem (Neural). Sólida atuação na educação digital e na elaboração de materiais didáticos. Sua expertise foca na formação docente voltada para multiletramentos e Remix Studies, unindo o desenvolvimento tecnológico de ponta à pesquisa em humanidades digitais, ética e letramentos críticos. Com pós-doutorado pela USP e estágio na Penn State, autor de publicações sobre mídias e tecnologias, integra a equipe de Ética e Educação do programa 'Understanding Artificial Intelligence (UAI)' do IEA-USP.", bioEs: "Doctor en Lingüística Aplicada (Unicamp) e Ingeniero Investigador de IA en Kunumi. Miembro del Núcleo de Estudios Críticos en IA y Lenguaje (Neural). Sólida trayectoria en educación digital y elaboración de materiales didácticos. Su experiencia se centra en la formación docente para multialfabetizaciones y Remix Studies, combinando el desarrollo tecnológico de vanguardia con la investigación en humanidades digitales, ética y alfabetizaciones críticas. Posdoctorado en la USP y pasantía en Penn State, autor de publicaciones sobre medios y tecnologías, miembro del equipo de Ética y Educación del programa 'Understanding Artificial Intelligence (UAI)' del IEA-USP." },
+        { nameEn: "Eliane Fernandes Azzari", namePt: "Eliane Fernandes Azzari", nameEs: "Eliane Fernandes Azzari", roleEn: "Education & Digital Technologies", rolePt: "Educação & Tecnologias Digitais", roleEs: "Educación & Tecnologías Digitales", bioEn: "PhD and Master in Applied Linguistics (Unicamp), postdoctoral fellow at FFLCH/USP. Permanent professor at the Graduate Program in Education and the Faculty of Letters at PUC-Campinas. Currently serves as Extension Manager at the Pro-Rectory of Graduate Studies and Extension (PROPPE). Leader of the Education and Technologies Research Group (GEdTecs - DGP/CNPq), member of the National Literacies Project (DGP/CNPq-USP) and the ANPOLL Transculturality, Language and Education GT. Coordinates the Laboratory of Research in Digital Media, Languages and Teacher Education (Fapesp). Member and develops network research with partners from REDPEEL. Main interests lie in the interfaces between languages, education and digital technologies, approached from the perspective of critical (multi)literacies, decolonial theories, critical pedagogy and Bakhtinian dialogic-enunciative theory.", bioPt: "Doutora e mestra em Linguística Aplicada (Unicamp) e realizou estágio pós-doutoral na FFLCH/USP. É docente permanente do Programa de Pós-graduação em Educação e da Faculdade de Letras da PUC-Campinas. Atualmente, atua como Gerente de Extensão na Pró-reitoria de Pós-graduação e Extensão (PROPPE) da mesma universidade. É líder do Grupo de Pesquisa Educação e Tecnologias (GEdTecs - DGP/CNPq), membro do Projeto Nacional de Letramentos (DGP/CNPq- USP) e do GT Transculturalidade, Linguagem e Educação da ANPOLL. Coordena o laboratório de Pesquisas em Mídias Digitais, Linguagens e Formação Docente (Fapesp) e o projeto 'Diálogos sobre IA e Educação Básica na Escola Pública Paulista' (Fapesp). É membro e desenvolve pesquisas em rede com parceiros da REDPEEL. Seus principais interesses de estudo recaem nas interfaces entre linguagens, educação e tecnologias digitais, abordadas sob a ótica dos (multi)letramentos críticos, das teorias decoloniais, da pedagogia crítica e da teoria dialógico-enunciativa bakhtiniana.", bioEs: "Doctora y maestra en Lingüística Aplicada (Unicamp), posdoctorado en FFLCH/USP. Profesora permanente del Programa de Posgrado en Educación y de la Facultad de Letras de la PUC-Campinas. Actualmente se desempeña como Gerente de Extensión en la Pró-rectoría de Posgrado y Extensión (PROPPE). Líder del Grupo de Investigación Educación y Tecnologías (GEdTecs - DGP/CNPq), miembro del Proyecto Nacional de Alfabetizaciones (DGP/CNPq-USP) y del GT Transculturalidad, Lenguaje y Educación de ANPOLL. Coordina el laboratorio de Investigación en Medios Digitales, Lenguajes y Formación Docente (Fapesp). Miembro e investigadora en red con socios de REDPEEL. Sus principales intereses se centran en las interfaces entre lenguajes, educación y tecnologías digitales, abordadas desde la perspectiva de las (multi)alfabetizaciones críticas, las teorías decoloniales, la pedagogía crítica y la teoría dialógico-enunciativa bajtiniana." },
+        { nameEn: "Emanuel Pedro Martins Gomes", namePt: "Emanuel Pedro Martins Gomes", nameEs: "Emanuel Pedro Martins Gomes", roleEn: "Discourse & Technopolitics", rolePt: "Discurso & Tecnopolíticas", roleEs: "Discurso & Tecnopolíticas", bioEn: "PhD in Applied Linguistics from the Graduate Program in Applied Linguistics (PosLA) at the State University of Ceará (UECE). Adjunct Professor III at the State University of Piauí (UESPI), Letters/Portuguese course, Campus Prof. Barros Araújo, Picos. Leader of the Research Group NECTAR and Coordinator of the Interinstitutional Research Line 'Neoliberalism and subjectivity: discourses and practices of self-management'. Carries out extension actions through the Cycle of Debates on Societies of Control, Big Tech and Neoliberalism. Works mainly on research focusing on: Science Studies/ Scientific Studies; Neoliberalism; Biotechnocapitalism; Technopolitical Practices of the Anthropocene; Cosmopolitics and Technodiversities; Geontologies; and Discourse Theories.", bioPt: "Doutor em Linguística Aplicada pelo Programa de Pós-Graduação em Linguística Aplicada (PosLA) da Universidade Estadual do Ceará (UECE). Professor Adjunto III da Universidade Estadual do Piauí (UESPI), do Curso de Letras/Português, Campus Prof. Barros Araújo, Picos. Líder do Grupo de Pesquisa NECTAR e Coordenador da Linha de Pesquisa Interinstitucional 'Neoliberalismo e subjetividade: discursos e práticas da gestão de si'. Realiza anualmente ações extensionistas por meio do Ciclo de Debates sobre Sociedades de Controle, Big Tech e Neoliberalismo. Atua principalmente em pesquisas cujo foco em: Science Studies/Estudos Científicos; Neoliberalismo; Biotecnocapitalismo; Práticas Tecnopolíticas do Antropoceno; Cosmopolíticas e Tecnodiversidades; Geontologias; e Teorias do Discurso.", bioEs: "Doctor en Lingüística Aplicada por el Programa de Posgrado en Lingüística Aplicada (PosLA) de la Universidad Estadual de Ceará (UECE). Profesor Adjunto III de la Universidad Estadual de Piauí (UESPI), del curso de Letras/Portugués, Campus Prof. Barros Araújo, Picos. Líder del Grupo de Investigación NECTAR y Coordinador de la Línea de Investigación Interinstitucional 'Neoliberalismo y subjetividad: discursos y prácticas de autogestión'. Realiza anualmente acciones de extensión a través del Ciclo de Debates sobre Sociedades de Control, Big Tech y Neoliberalismo. Trabaja principalmente en investigaciones centradas en: Science Studies/Estudios Científicos; Neoliberalismo; Biotecnocapitalismo; Prácticas Tecnopolíticas del Antropoceno; Cosmopolíticas y Tecnodiversidades; Geontologías; y Teorías del Discurso." },
+        { nameEn: "Gurumurthy Kasinathan", namePt: "Gurumurthy Kasinathan", nameEs: "Gurumurthy Kasinathan", roleEn: "EdTech & Teacher Education", rolePt: "EdTech & Formação de Professores", roleEs: "EdTech & Formación Docente", bioEn: "One of the founders of IT for Change. He has 34 years of experience in the development and corporate sectors. His experience also includes stints in the Government and in Academia. Guru leads projects in the area of education, including research, demonstration projects, systemic teacher education reform, and policy advocacy. His areas of expertise include EdTech, teacher education, Educational Leadership, and Free and Open Digital Technologies. He was earlier with the Azim Premji Foundation, where he was deputed to work in the 'Policy Planning Unit' in the Karnataka education department. He has been a visiting faculty at TISS Mumbai and Hyderabad for their 'Education Leadership and Management' and 'ICT and Education' courses. Prior to that, he was with i-flex solutions (now Oracle Financial Software Services) and A.F.Ferguson Management Consultancy Services.", bioPt: "Um dos fundadores do IT for Change. Possui 34 anos de experiência nos setores de desenvolvimento e corporativo. Sua experiência também inclui passagens pelo Governo e pela Academia. Guru lidera projetos na área de educação, incluindo pesquisa, projetos demonstrativos, reforma sistêmica da formação de professores e advocacy político. Suas áreas de especialização incluem EdTech, formação de professores, Liderança Educacional e Tecnologias Digitais Livres e Abertas. Trabalhou anteriormente na Azim Premji Foundation, onde foi designado para trabalhar na 'Unidade de Planejamento de Políticas' do departamento de educação de Karnataka. Foi professor visitante no TISS Mumbai e Hyderabad para seus cursos de 'Liderança e Gestão Educacional' e 'TIC e Educação'. Antes disso, trabalhou na i-flex solutions (agora Oracle Financial Software Services) e na A.F.Ferguson Management Consultancy Services.", bioEs: "Uno de los fundadores de IT for Change. Tiene 34 años de experiencia en los sectores de desarrollo y corporativo. Su experiencia también incluye pasantías en el Gobierno y en la Academia. Guru lidera proyectos en el área de educación, incluyendo investigación, proyectos demostrativos, reforma sistémica de la formación docente y promoción de políticas. Sus áreas de especialización incluyen EdTech, formación docente, Liderazgo Educativo y Tecnologías Digitales Libres y Abiertas. Anteriormente trabajó en la Fundación Azim Premji, donde fue enviado a trabajar en la 'Unidad de Planificación de Políticas' del departamento de educación de Karnataka. Ha sido profesor visitante en TISS Mumbai y Hyderabad para sus cursos de 'Liderazgo y Gestión Educativa' y 'TIC y Educación'. Antes de eso, trabajó en i-flex solutions (ahora Oracle Financial Software Services) y A.F.Ferguson Management Consultancy Services." },
+        { nameEn: "Janaina Cardoso de Mello", namePt: "Janaina Cardoso de Mello", nameEs: "Janaina Cardoso de Mello", roleEn: "History Education & Cultural Heritage", rolePt: "Ensino de História & Patrimônio Cultural", roleEs: "Enseñanza de la Historia & Patrimonio Cultural", bioEn: "PhD in Social History (UFRJ), Postdoctoral Fellow (UFRJ/UFF), Professor at the Department of History (DHI), at the Graduate Program in Education (PPGED), in History (PROHIS) and History Teaching (ProfHistória) at the Federal University of Sergipe (UFS), CNPq Productivity Scholarship DT-2, Member of LADOC/CNPq and COLAB/UFS, Member of the Red de Cooperación Académica en la Cátedra Patrimonio Cultural Inmaterial de Latinoamérica y el Caribe/UNESCO, Argentina and Colombia, and Member of the Education and Technology Community of the UNESCO IIPE Office for Latin America and the Caribbean.", bioPt: "Doutora em História Social (UFRJ), Pós-Doutorado (UFRJ/UFF), Professora do Departamento de História (DHI), do Programa de Pós-Graduação em Educação (PPGED), em História (PROHIS) e Ensino de História (ProfHistória) da Universidade Federal de Sergipe (UFS), Bolsista de Produtividade CNPq DT-2, Membro do LADOC/CNPq e COLAB/UFS, Membro da Red de Cooperación Académica en la Cátedra Patrimonio Cultural Inmaterial de Latinoamérica y el Caribe/UNESCO, Argentina e Colômbia e Membro da Comunidade Educação e Tecnologia do Escritório para a América Latina e o Caribe do IIPE UNESCO.", bioEs: "Doctora en Historia Social (UFRJ), Posdoctorado (UFRJ/UFF), Profesora del Departamento de Historia (DHI), del Programa de Posgrado en Educación (PPGED), en Historia (PROHIS) y Enseñanza de la Historia (ProfHistória) de la Universidad Federal de Sergipe (UFS), Becaria de Productividad CNPq DT-2, Miembro de LADOC/CNPq y COLAB/UFS, Miembro de la Red de Cooperación Académica en la Cátedra Patrimonio Cultural Inmaterial de Latinoamérica y el Caribe/UNESCO, Argentina y Colombia, y Miembro de la Comunidad Educación y Tecnología de la Oficina para América Latina y el Caribe del IIPE UNESCO." },
+        { nameEn: "Jefferson do Carmo", namePt: "Jefferson do Carmo", nameEs: "Jefferson do Carmo", roleEn: "Applied Linguistics & Teacher Education", rolePt: "Linguística Aplicada & Formação de Professores", roleEs: "Lingüística Aplicada & Formación Docente", bioEn: "Doctor of Education from the Federal University of Sergipe, Brazil, with a nine-month term at Virginia Commonwealth University, USA. Master's Degree in Education and College Degree in English Language Teaching from the Federal University of Sergipe (UFS). Diploma Degree in Applied Linguistics and Foreign Language Teaching from the Federal University of Ceará. Member of the Research Groups GEPLET/UEFS and TECLA/UFS. Assistant Professor at the State University of Feira de Santana (UEFS).", bioPt: "Doutor em Educação pela Universidade Federal de Sergipe, Brasil, com estágio de nove meses na Virginia Commonwealth University, EUA. Mestre em Educação e Licenciado em Letras/Inglês pela Universidade Federal de Sergipe (UFS). Especialista em Linguística Aplicada e Ensino de Língua Estrangeira pela Universidade Federal do Ceará. Membro dos Grupos de Pesquisa GEPLET/UEFS e TECLA/UFS. Professor Assistente da Universidade Estadual de Feira de Santana (UEFS).", bioEs: "Doctor en Educación por la Universidad Federal de Sergipe, Brasil, con una estancia de nueve meses en Virginia Commonwealth University, EE. UU. Maestría en Educación y Licenciatura en Enseñanza de Inglés por la Universidad Federal de Sergipe (UFS). Diploma en Lingüística Aplicada y Enseñanza de Lenguas Extranjeras por la Universidad Federal de Ceará. Miembro de los Grupos de Investigación GEPLET/UEFS y TECLA/UFS. Profesor Asistente en la Universidad Estadual de Feira de Santana (UEFS)." },
+        { nameEn: "John Pike", namePt: "John Pike", nameEs: "John Pike", roleEn: "Digital & Information Literacy", rolePt: "Letramento Digital & Informacional", roleEs: "Alfabetización Digital & Informacional", bioEn: "Lecturer at Adelaide University where he teaches courses on digital and information literacy. His research interests include the use of digital technology in teaching, learning, and assessment. With a background in sociology, he is particularly interested in how we can foster a critical approach to artificial intelligence in education, as well as the wider social implications of algorithmic systems. He is a co-facilitator of the Generative AI special interest group in the National Association of Enabling Educators of Australia.", bioPt: "Professor na Universidade de Adelaide, onde leciona cursos sobre letramento digital e informacional. Seus interesses de pesquisa incluem o uso da tecnologia digital no ensino, aprendizagem e avaliação. Com formação em sociologia, ele está particularmente interessado em como podemos promover uma abordagem crítica à inteligência artificial na educação, bem como as implicações sociais mais amplas dos sistemas algorítmicos. É co-facilitador do grupo de interesse especial em IA Generativa da Associação Nacional de Educadores Habilitadores da Austrália.", bioEs: "Profesor en la Universidad de Adelaide, donde enseña cursos sobre alfabetización digital e informacional. Sus intereses de investigación incluyen el uso de la tecnología digital en la enseñanza, el aprendizaje y la evaluación. Con formación en sociología, está particularmente interesado en cómo podemos fomentar un enfoque crítico de la inteligencia artificial en la educación, así como las implicaciones sociales más amplias de los sistemas algorítmicos. Es co-facilitador del grupo de interés especial en IA Generativa de la Asociación Nacional de Educadores Habilitadores de Australia." },
+        { nameEn: "José Paulo Gomes Brazão", namePt: "José Paulo Gomes Brazão", nameEs: "José Paulo Gomes Brazão", roleEn: "Pedagogical Innovation & AI", rolePt: "Inovação Pedagógica & IA", roleEs: "Innovación Pedagógica & IA", bioEn: "PhD in Education – Pedagogical Innovation from the University of Madeira (UMa), where he works as a teacher and researcher in the field of Education. He has two post-doctorates, carried out at the Federal University of Sergipe (UFS) - Education and Diversity and at the Institute of Education of the University of Lisbon (IE-ULisboa) - Pedagogical Innovation with AI, and a Master's in Educational Psychology from the Instituto Superior de Psicologia Aplicada (ISPA). He researches pedagogical innovation, gender diversity and the integration of artificial intelligence in educational contexts. He is part of international networks and projects, including Erasmus+ initiatives and collaborations between Lusophone institutions. He has experience in supervising dissertations and theses, contributing to advanced training in Education and Pedagogical Innovation.", bioPt: "Doutor em Educação – Inovação Pedagógica pela Universidade da Madeira (UMa), onde exerce funções como docente e investigador na área da Educação. Possui dois pós-doutoramentos, realizados na Universidade Federal de Sergipe (UFS) - Educação e Diversidade e no Instituto de Educação da Universidade de Lisboa (IE-ULisboa) - Inovação Pedagógica com IA, e é Mestre em Psicologia da Educação pelo Instituto Superior de Psicologia Aplicada (ISPA). Investiga a inovação pedagógica, diversidade de género e integração da inteligência artificial em contextos educativos. Integra redes e projetos internacionais, incluindo iniciativas no âmbito do Erasmus+ e colaborações entre instituições lusófonas. Tem experiência na orientação de dissertações e teses, contribuindo para a formação avançada em Educação e Inovação Pedagógica.", bioEs: "Doctor en Educación – Innovación Pedagógica por la Universidad de Madeira (UMa), donde trabaja como docente e investigador en el área de Educación. Tiene dos posdoctorados, realizados en la Universidad Federal de Sergipe (UFS) - Educación y Diversidad y en el Instituto de Educación de la Universidad de Lisboa (IE-ULisboa) - Innovación Pedagógica con IA, y una Maestría en Psicología Educativa del Instituto Superior de Psicología Aplicada (ISPA). Investiga la innovación pedagógica, la diversidad de género y la integración de la inteligencia artificial en contextos educativos. Forma parte de redes y proyectos internacionales, incluyendo iniciativas Erasmus+ y colaboraciones entre instituciones lusófonas. Tiene experiencia en la supervisión de disertaciones y tesis, contribuyendo a la formación avanzada en Educación e Innovación Pedagógica." },
+        { nameEn: "Júlio Araújo", namePt: "Júlio Araújo", nameEs: "Júlio Araújo", roleEn: "Discourse & Digitalities", rolePt: "Discurso & Digitalidades", roleEs: "Discurso & Digitalidades", bioEn: "Full Professor at the Federal University of Ceará (UFC), where he works in the Department of Vernacular Letters and is a permanent faculty member of the Graduate Program in Linguistics. CNPq Research Productivity Fellow. At UFC, he coordinates the DIGITAL research group (Discourses and Digitalities) and the Laboratory of Literacies and Academic Writing. He completed postdoctoral internships in Linguistic Studies at the Federal University of Minas Gerais (UFMG) and in Humanities at the University for International Integration of Afro-Brazilian Lusophony (UNILAB). He was vice-president of the Brazilian Association of Applied Linguistics (ALAB) and of the Brazilian Association of Hypertext and Educational Technology Studies (ABEHTE) in the 2009–2011 biennium. He is a co-founder of the ANPOLL Language and Technologies GT, which he coordinated in the 2012–2014 biennium, also serving on the advisory boards of ALAB and ABEHTE during that biennium. Currently, he coordinates the ANPOLL Language and Technology GT.", bioPt: "Professor Titular da Universidade Federal do Ceará (UFC), onde atua no Departamento de Letras Vernáculas e integra o corpo docente permanente do Programa de Pós-Graduação em Linguística. Bolsista de Produtividade em Pesquisa do CNPq. Na UFC, coordena o grupo de pesquisa DIGITAL (Discursos e Digitalidades) e o Laboratório de Letramentos e Escrita Acadêmica. Realizou estágios de pós-doutorado em Estudos Linguísticos na Universidade Federal de Minas Gerais (UFMG) e em Humanidades na Universidade da Integração Internacional da Lusofonia Afro-Brasileira (UNILAB). Foi vice-presidente da Associação de Linguística Aplicada do Brasil (ALAB) e da Associação Brasileira de Estudos sobre Hipertexto e Tecnologia Educacional (ABEHTE) no biênio 2009–2011. É cofundador do GT Linguagem e Tecnologias da ANPOLL, que coordenou no biênio 2012–2014, integrando também, nesse biênio, os conselhos consultivos da ALAB e da ABEHTE. Atualmente, exerce a coordenação do GT Linguagem e Tecnologia da ANPOLL.", bioEs: "Profesor Titular de la Universidad Federal de Ceará (UFC), donde trabaja en el Departamento de Letras Vernáculas y es miembro permanente del Programa de Posgrado en Lingüística. Becario de Productividad en Investigación del CNPq. En la UFC, coordina el grupo de investigación DIGITAL (Discursos y Digitalidades) y el Laboratorio de Alfabetizaciones y Escritura Académica. Realizó pasantías posdoctorales en Estudios Lingüísticos en la Universidad Federal de Minas Gerais (UFMG) y en Humanidades en la Universidad de la Integración Internacional de la Lusofonía Afro-Brasileña (UNILAB). Fue vicepresidente de la Asociación Brasileña de Lingüística Aplicada (ALAB) y de la Asociación Brasileña de Estudios de Hipertexto y Tecnología Educativa (ABEHTE) en el bienio 2009–2011. Es cofundador del GT Lenguaje y Tecnologías de ANPOLL, que coordinó en el bienio 2012–2014, integrando también en ese bienio los consejos consultivos de ALAB y ABEHTE. Actualmente, coordina el GT Lenguaje y Tecnología de ANPOLL." },
+        { nameEn: "Kleber Aparecido da Silva", namePt: "Kleber Aparecido da Silva", nameEs: "Kleber Aparecido da Silva", roleEn: "Critical Language Studies & Multiliteracies", rolePt: "Estudos Críticos da Linguagem & Multiletramentos", roleEs: "Estudios Críticos del Lenguaje & Multialfabetizaciones", bioEn: "Associate Professor 4 of the Letters course (Brazilian Portuguese as a Second Language) and of International Relations at the University of Brasília (UnB). CNPq Research Productivity Fellow - Level 2. Coordinates the 'Critical and Advanced Studies in Languages Research Group' (GECAL) and the 'Global South Collective Researchers'. Develops research in languages, language education, technologies, human rights, language policies, diversity, (multi)literacies and teacher education, also integrating international studies in collaboration with Stanford University, Penn State University, Université de Genève and Wits University.", bioPt: "Professor Associado 4 do curso de Letras (Português do Brasil como Segunda Língua) e de Relações Internacionais da Universidade de Brasília (UnB). Bolsista em Produtividade e Pesquisa do CNPq - Nível 2. Coordena o 'Grupo de Estudos Críticos e Avançados em Linguagens' (GECAL) e o 'Global South Collective Researchers'. Desenvolve pesquisas em linguagens, educação linguística, tecnologias, direitos humanos, políticas linguísticas, diversidade, (multi)letramentos e formação de professores, integrando também estudos internacionais em colaboração com Stanford University, Penn State University, Université de Genève e Wits University.", bioEs: "Profesor Asociado 4 del curso de Letras (Portugués de Brasil como Segunda Lengua) y de Relaciones Internacionales de la Universidad de Brasília (UnB). Becario de Productividad en Investigación del CNPq - Nivel 2. Coordina el 'Grupo de Estudios Críticos y Avanzados en Lenguajes' (GECAL) y el 'Global South Collective Researchers'. Desarrolla investigaciones en lenguajes, educación lingüística, tecnologías, derechos humanos, políticas lingüísticas, diversidad, (multi)alfabetizaciones y formación docente, integrando también estudios internacionales en colaboración con Stanford University, Penn State University, Université de Genève y Wits University." },
+        { nameEn: "Leonardo Zenha", namePt: "Leonardo Zenha", nameEs: "Leonardo Zenha", roleEn: "Education & Communication", rolePt: "Educação & Comunicação", roleEs: "Educación & Comunicación", bioEn: "Professor on full-time dedication at the Federal University of Pará (UFPA). Professor of the Graduate Program in Education and Inclusive Cultures (PPGECI) and collaborator of the Graduate Program in Education and Culture (PPGEDUC) at the same institution. Develops teaching, research and extension activities in the areas of Education and Communication. Coordinator of GT 16 – Communication and Education of the National Association of Graduate Studies and Research in Education (ANPEd).", bioPt: "Professor em regime de Dedicação Exclusiva na Universidade Federal do Pará (UFPA). Docente do Programa de Pós-Graduação em Educação e Culturas Inclusivas (PPGECI) e colaborador do Programa de Pós-Graduação em Educação e Cultura (PPGEDUC) da mesma instituição. Desenvolve atividades de ensino, pesquisa e extensão nas áreas de Educação e Comunicação. Coordenador do GT 16 – Comunicação e Educação da Associação Nacional de Pós-Graduação e Pesquisa em Educação (ANPEd).", bioEs: "Profesor en régimen de Dedicación Exclusiva en la Universidad Federal de Pará (UFPA). Docente del Programa de Posgrado en Educación y Culturas Inclusivas (PPGECI) y colaborador del Programa de Posgrado en Educación y Cultura (PPGEDUC) de la misma institución. Desarrolla actividades de enseñanza, investigación y extensión en las áreas de Educación y Comunicación. Coordinador del GT 16 – Comunicación y Educación de la Asociación Nacional de Posgrado e Investigación en Educación (ANPEd)." },
+        { nameEn: "Letícia Moraes", namePt: "Letícia Moraes", nameEs: "Letícia Moraes", roleEn: "Semiotics & AI", rolePt: "Semiótica & IA", roleEs: "Semiótica & IA", bioEn: "Professor in the Department of Linguistics and Portuguese Language at the Federal University of Paraíba (UFPB), where she coordinates SemiÓLab (the Semiotics Laboratory). She serves on the Scientific Committee on Semiotics of the Brazilian Linguistics Association (ABRALIN). She holds a Ph.D. in Semiotics and General Linguistics from the University of São Paulo (USP), including a doctoral research internship at the University of Liège (ULg). Her research engages with semiotics, artificial intelligence, and the Global South, with particular emphasis on the analysis of practices and forms of life that belong to the technosemiotic ecosystem.", bioPt: "Professora no Departamento de Linguística e Língua Portuguesa da Universidade Federal da Paraíba (UFPB), onde coordena o SemiÓLab (Laboratório de Semiótica). Integra o Comitê Científico de Semiótica da Associação Brasileira de Linguística (ABRALIN). É Doutora em Semiótica e Linguística Geral pela Universidade de São Paulo (USP), com estágio doutoral na Université de Liège (ULg). Sua pesquisa envolve semiótica, inteligência artificial e Sul Global, com ênfase na análise de práticas e formas de vida pertencentes ao ecossistema tecnossemiótico.", bioEs: "Profesora en el Departamento de Lingüística y Lengua Portuguesa de la Universidad Federal de Paraíba (UFPB), donde coordina SemiÓLab (el Laboratorio de Semiótica). Es miembro del Comité Científico de Semiótica de la Asociación Brasileña de Lingüística (ABRALIN). Es Doctora en Semiótica y Lingüística General por la Universidad de São Paulo (USP), con una pasantía doctoral en la Universidad de Lieja (ULg). Su investigación aborda la semiótica, la inteligencia artificial y el Sur Global, con especial énfasis en el análisis de prácticas y formas de vida pertenecientes al ecosistema tecnosemiótico." },
+        { nameEn: "Lilia Gonçalves", namePt: "Lilia Gonçalves", nameEs: "Lilia Gonçalves", roleEn: "Applied Linguistics & Digital Culture", rolePt: "Linguística Aplicada & Cultura Digital", roleEs: "Lingüística Aplicada & Cultura Digital", bioEn: "PhD in Applied Linguistics from the Interdisciplinary Graduate Program in Applied Linguistics at the Federal University of Rio de Janeiro (UFRJ), Master in Applied Linguistics from the same program. Specialist in Implementation and Management of Distance Education (UFF). Young Scientist of Our State by the Carlos Chagas Filho Foundation for Research Support of the State of Rio de Janeiro - FAPERJ. Adjunct professor at the University of Grande Rio (UNIGRANRIO). Permanent professor in the Graduate Program in Humanities, Cultures and Arts (UNIGRANRIO). Coordinates the research group Center for Studies in Languages, Educational Practices and Digital Culture (NELPED). Member of the ANPOLL Language and Technologies GT.", bioPt: "Doutora em Linguística Aplicada, pelo Programa Interdisciplinar de Pós-Graduação em Linguística Aplicada da Universidade Federal do Rio de Janeiro (UFRJ), mestre em Linguística Aplicada pelo mesmo programa. Especialista em Implementação e Gestão da Educação a Distância (UFF). Jovem Cientista do Nosso Estado pela Fundação Carlos Chagas Filho de Amparo à Pesquisa do Estado do Rio de Janeiro - FAPERJ. Professora adjunta da Universidade do Grande Rio (UNIGRANRIO). Docente permanente no Programa de Pós-Graduação em Humanidades, Culturas e Artes (UNIGRANRIO). Coordena o grupo de pesquisa Núcleo de Estudos em Linguagens, Práticas Educacionais e Cultura Digital (NELPED). Membro do GT Linguagem e Tecnologias da ANPOLL.", bioEs: "Doctora en Lingüística Aplicada por el Programa Interdisciplinario de Posgrado en Lingüística Aplicada de la Universidad Federal de Río de Janeiro (UFRJ), maestría en Lingüística Aplicada por el mismo programa. Especialista en Implementación y Gestión de la Educación a Distancia (UFF). Joven Científica de Nuestro Estado por la Fundación Carlos Chagas Filho de Apoyo a la Investigación del Estado de Río de Janeiro - FAPERJ. Profesora adjunta de la Universidad de Grande Rio (UNIGRANRIO). Profesora permanente en el Programa de Posgrado en Humanidades, Culturas y Artes (UNIGRANRIO). Coordina el grupo de investigación Núcleo de Estudios en Lenguajes, Prácticas Educativas y Cultura Digital (NELPED). Miembro del GT Lenguaje y Tecnologías de ANPOLL." },
+        { nameEn: "Luciana C. de Oliveira", namePt: "Luciana C. de Oliveira", nameEs: "Luciana C. de Oliveira", roleEn: "TESOL & GenAI in Pedagogy", rolePt: "TESOL & IA Generativa na Pedagogia", roleEs: "TESOL & IA Generativa en la Pedagogía", bioEn: "Professor in the Department of Teaching and Learning in the School of Education at Virginia Commonwealth University. Most recently her research has focused on applications of GenAI in TESOL pedagogy, with scholarship on using GenAI-generated mentor texts and leveraging GenAI to expand teachers' pedagogical potential. She is the recipient of the 2026 James E. Alatis Award for Service to TESOL, the highest honor presented by TESOL International Association, and the 2025 Leadership through Research Award by Second Language Research Special Interest Group of the American Educational Research Association (AERA).", bioPt: "Professora no Departamento de Ensino e Aprendizagem da Escola de Educação da Virginia Commonwealth University. Recentemente, sua pesquisa tem se concentrado em aplicações de IA Generativa na pedagogia TESOL, com estudos sobre o uso de textos modelo gerados por IA Generativa e o aproveitamento da IA Generativa para expandir o potencial pedagógico dos professores. É destinatária do Prêmio James E. Alatis 2026 por Serviço ao TESOL, a mais alta honraria concedida pela TESOL International Association, e do Prêmio Liderança através da Pesquisa 2025 do Grupo de Interesse Especial em Pesquisa de Segunda Língua da American Educational Research Association (AERA).", bioEs: "Profesora en el Departamento de Enseñanza y Aprendizaje de la Escuela de Educación de Virginia Commonwealth University. Recientemente, su investigación se ha centrado en aplicaciones de IA Generativa en la pedagogía TESOL, con estudios sobre el uso de textos modelo generados por IA Generativa y el aprovechamiento de la IA Generativa para expandir el potencial pedagógico de los docentes. Es destinataria del Premio James E. Alatis 2026 por Servicio al TESOL, el más alto honor otorgado por la TESOL International Association, y del Premio Liderazgo a través de la Investigación 2025 del Grupo de Interés Especial en Investigación de Segunda Lengua de la American Educational Research Association (AERA)." },
+        { nameEn: "María Nuria Lloret Romero", namePt: "María Nuria Lloret Romero", nameEs: "María Nuria Lloret Romero", roleEn: "Information & Communication Technologies", rolePt: "Tecnologias da Informação e Comunicação", roleEs: "Tecnologías de la Información y Comunicación", bioEn: "Professor and researcher at the Polytechnic University of Valencia, Spain. Her work focuses on digital transformation, information architecture, and the application of emerging technologies in education and communication. She has led numerous international projects and publications in the field of digital literacy and AI-mediated learning environments.", bioPt: "Professora e pesquisadora da Universidade Politécnica de Valência, Espanha. Seu trabalho foca na transformação digital, arquitetura da informação e aplicação de tecnologias emergentes na educação e comunicação. Liderou inúmeros projetos internacionais e publicações na área de letramento digital e ambientes de aprendizagem mediados por IA.", bioEs: "Profesora e investigadora de la Universidad Politécnica de Valencia, España. Su trabajo se centra en la transformación digital, la arquitectura de la información y la aplicación de tecnologías emergentes en la educación y la comunicación. Ha liderado numerosos proyectos internacionales y publicaciones en el campo de la alfabetización digital y entornos de aprendizaje mediados por IA." },
+        { nameEn: "Nina da Hora", namePt: "Nina da Hora", nameEs: "Nina da Hora", roleEn: "Computer Science & Anti-racist AI", rolePt: "Ciência da Computação & IA Antirracista", roleEs: "Ciencia de la Computación & IA Antirracista", bioEn: "Computer scientist, researcher and anti-racist hacker. Master in Ethics in Computer Vision at Unicamp, her research focuses on mitigating bias in facial recognition. Published a book on algorithms and co-authored the chapter 'Mitigating Bias in Machine Learning' with researchers from Berkeley, Stanford and Georgia Tech. Founded the Instituto da Hora, advises the Presidency of the Republic on technology and AI as a Ford Foundation Global Fellow, and served on TikTok's Safety Council in Brazil. She is an AI and ethics columnist for MIT Technology Review Brazil and contributes to the Global Council on Responsible AI at Chatham House.", bioPt: "Cientista da computação, pesquisadora e hacker antirracista. Mestre em Ética em Visão Computacional na Unicamp, sua pesquisa foca na mitigação de vieses em reconhecimento facial. Publicou um livro sobre algoritmos e é coautora do capítulo 'Mitigating Bias in Machine Learning', com pesquisadores de Berkeley, Stanford e Georgia Tech. Fundou o Instituto da Hora, assessora a Presidência da República em tecnologia e IA como Ford Foundation Global Fellow, e integrou o Conselho de Segurança do TikTok no Brasil. É colunista de IA e ética na MIT Technology Review Brasil e contribui com o Global Council on Responsible AI do Chatham House.", bioEs: "Científica de la computación, investigadora y hacker antirracista. Maestra en Ética en Visión Computacional en Unicamp, su investigación se centra en mitigar sesgos en el reconocimiento facial. Publicó un libro sobre algoritmos y es coautora del capítulo 'Mitigating Bias in Machine Learning' con investigadores de Berkeley, Stanford y Georgia Tech. Fundó el Instituto da Hora, asesora a la Presidencia de la República en tecnología e IA como Ford Foundation Global Fellow, e integró el Consejo de Seguridad de TikTok en Brasil. Es columnista de IA y ética en MIT Technology Review Brasil y contribuye con el Global Council on Responsible AI de Chatham House." },
+        { nameEn: "Rafael Vetromille-Castro", namePt: "Rafael Vetromille-Castro", nameEs: "Rafael Vetromille-Castro", roleEn: "Applied Linguistics & Digital Technologies", rolePt: "Linguística Aplicada & Tecnologias Digitais", roleEs: "Lingüística Aplicada & Tecnologías Digitales", bioEn: "Master in Letters from UCPel, PhD in Informatics in Education from UFRGS, with a Postdoctoral fellowship at the University of California, Berkeley, he is a full professor at PPGL at UFPel. In Applied Linguistics, he researches the interface of language with digital technologies, linguistic development, teacher education and internationalization. Served as Coordinator of Graduate Studies at PRPPG/UFPel from 2017 to 2024 and is currently Coordinator of International Relations at the institution.", bioPt: "Mestre em Letras pela UCPel, Doutor em Informática na Educação pela UFRGS, com Pós-Doutorado pela Universidade da Califórnia em Berkeley, é professor titular no PPGL da UFPel. Na Linguística Aplicada, pesquisa a interface da linguagem com as tecnologias digitais, desenvolvimento linguístico, formação de professores e internacionalização. Atuou como Coordenador da Pós-Graduação junto à PRPPG/UFPel de 2017 a 2024 e atualmente é Coordenador de Relações Internacionais da instituição.", bioEs: "Maestría en Letras por UCPel, Doctorado en Informática en Educación por UFRGS, con Posdoctorado en la Universidad de California, Berkeley, es profesor titular en PPGL de UFPel. En Lingüística Aplicada, investiga la interfaz del lenguaje con las tecnologías digitales, el desarrollo lingüístico, la formación docente y la internacionalización. Se desempeñó como Coordinador de Posgrado en PRPPG/UFPel de 2017 a 2024 y actualmente es Coordinador de Relaciones Internacionales de la institución." },
+        { nameEn: "Raquel Recuero", namePt: "Raquel Recuero", nameEs: "Raquel Recuero", roleEn: "Social Media & Network Analysis", rolePt: "Mídias Sociais & Análise de Redes", roleEs: "Redes Sociales & Análisis de Redes", bioEn: "Professor and researcher at the Graduate Program in Letters at Ufpel and the Graduate Program in Communication at UFRGS. She coordinates the MIDIARS research laboratory (Media, Discourse and Social Network Analysis). Her work focuses on social media, discourse, and network analysis, with emphasis on digital platforms and their societal impacts.", bioPt: "Professora e pesquisadora do Programa de Pós-Graduação em Letras da Ufpel e do Programa de Pós-Graduação em Comunicação da UFRGS. É coordenadora do laboratório de pesquisa MIDIARS (Mídia, Discurso e Análise de Redes Sociais). Seu trabalho foca em mídias sociais, discurso e análise de redes, com ênfase em plataformas digitais e seus impactos sociais.", bioEs: "Profesora e investigadora del Programa de Posgrado en Letras de Ufpel y del Programa de Posgrado en Comunicación de UFRGS. Coordina el laboratorio de investigación MIDIARS (Medios, Discurso y Análisis de Redes Sociales). Su trabajo se centra en redes sociales, discurso y análisis de redes, con énfasis en plataformas digitales y sus impactos sociales." },
+        { nameEn: "Raúl Alberto Mora", namePt: "Raúl Alberto Mora", nameEs: "Raúl Alberto Mora", roleEn: "Literacies & Language Education", rolePt: "Letramentos & Educação Linguística", roleEs: "Alfabetizaciones & Educación Lingüística", bioEn: "Associate professor at the School of Education and Pedagogy at Universidad Pontificia Bolivariana in Medellín, where he teaches courses on bilingual education, discourse analysis, literacy, and critical theory at the undergraduate and doctoral levels. He currently holds the highest rank of Senior Researcher in Colombia, as designated by Minciencias. He has served as a visiting professor, scholar, and guest lecturer at universities in Colombia, Poland, Mexico, Czechia, Brazil, the United States, Spain, and Norway. He is currently researching how people learn languages in cities and gaming communities, how to teach different types of literacy in language education, the importance of critical approaches to teaching English and multilingualism in developing countries, and how to use AI thoughtfully in language teaching, all of which he explores at the Literacies in Second Languages Project (LSLP) Research Lab, which he leads at UPB. He co-edited The Handbook of Critical Literacies (Routledge, 2021), Translanguaging and Multimodality as Flow, Agency, and a New Sense of Advocacy in and From the Global South (Routledge, 2024), Reimagining Literacy in the Age of AI (CRC Press, 2025), and the forthcoming volume English Language Teacher Education in Latin America (Bloomsbury, 2026). He also edited the volume Understanding Second Language Users as Gamers: Language as Victory (Routledge, 2025).", bioPt: "Professor associado na Escola de Educação e Pedagogia da Universidade Pontifícia Bolivariana em Medellín, onde leciona cursos de educação bilíngue, análise do discurso, letramento e teoria crítica nos níveis de graduação e doutorado. Atualmente, ocupa o mais alto posto de Pesquisador Sênior na Colômbia, conforme designado pelo Minciencias. Atuou como professor visitante, pesquisador e palestrante convidado em universidades da Colômbia, Polônia, México, República Tcheca, Brasil, Estados Unidos, Espanha e Noruega. Atualmente pesquisa como as pessoas aprendem idiomas em cidades e comunidades de jogos, como ensinar diferentes tipos de letramento na educação linguística, a importância de abordagens críticas para o ensino de inglês e multilinguismo em países em desenvolvimento, e como usar a IA com critério no ensino de idiomas, tudo o que ele explora no Laboratório de Pesquisa Literacies in Second Languages Project (LSLP), que lidera na UPB. Co-editou The Handbook of Critical Literacies (Routledge, 2021), Translanguaging and Multimodality as Flow, Agency, and a New Sense of Advocacy in and From the Global South (Routledge, 2024), Reimagining Literacy in the Age of AI (CRC Press, 2025), e o próximo volume English Language Teacher Education in Latin America (Bloomsbury, 2026). Também editou o volume Understanding Second Language Users as Gamers: Language as Victory (Routledge, 2025).", bioEs: "Profesor asociado en la Escuela de Educación y Pedagogía de la Universidad Pontificia Bolivariana en Medellín, donde enseña cursos de educación bilingüe, análisis del discurso, alfabetización y teoría crítica en los niveles de pregrado y doctorado. Actualmente ocupa el más alto rango de Investigador Senior en Colombia, designado por Minciencias. Se ha desempeñado como profesor visitante, investigador y conferencista invitado en universidades de Colombia, Polonia, México, República Checa, Brasil, Estados Unidos, España y Noruega. Actualmente investiga cómo las personas aprenden idiomas en ciudades y comunidades de juegos, cómo enseñar diferentes tipos de alfabetización en la educación lingüística, la importancia de los enfoques críticos para la enseñanza del inglés y el multilingüismo en países en desarrollo, y cómo usar la IA reflexivamente en la enseñanza de idiomas, todo lo cual explora en el Laboratorio de Investigación Literacies in Second Languages Project (LSLP), que dirige en la UPB. Coeditó The Handbook of Critical Literacies (Routledge, 2021), Translanguaging and Multimodality as Flow, Agency, and a New Sense of Advocacy in and From the Global South (Routledge, 2024), Reimagining Literacy in the Age of AI (CRC Press, 2025), y el próximo volumen English Language Teacher Education in Latin America (Bloomsbury, 2026). También editó el volumen Understanding Second Language Users as Gamers: Language as Victory (Routledge, 2025)." },
+        { nameEn: "Rodrigo Abrantes da Silva", namePt: "Rodrigo Abrantes da Silva", nameEs: "Rodrigo Abrantes da Silva", roleEn: "Multiliteracies & Learning Design", rolePt: "Multiletramentos & Design de Aprendizagem", roleEs: "Multialfabetizaciones & Diseño de Aprendizaje", bioEn: "Postdoctoral fellow at the Federal University of Sergipe, where his work focuses on multiliteracies, learning design, and digital technologies applied to education. He holds a Ph.D. in Literacies from the University of São Paulo (USP). He has published on multimodal design, teacher education, and generative artificial intelligence (GAI) in education, receiving two excellence awards for his research. Currently, he investigates GAI applications for education as a member of the Cyber-Social Research Group, TECLA, and the National Literacies Project. He is the author of the book New Literacies, New Learning: Cyber-Social Pedagogies in the Brazilian Context.", bioPt: "Pesquisador de pós-doutorado na Universidade Federal de Sergipe, onde seu trabalho se concentra em multiletramentos, design de aprendizagem e tecnologias digitais aplicadas à educação. É Doutor em Letramentos pela Universidade de São Paulo (USP). Publicou sobre design multimodal, formação de professores e inteligência artificial generativa (IAG) na educação, recebendo dois prêmios de excelência por sua pesquisa. Atualmente, investiga aplicações de IAG para a educação como membro do Grupo de Pesquisa Ciber-Social, TECLA e do Projeto Nacional de Letramentos. É autor do livro New Literacies, New Learning: Cyber-Social Pedagogies in the Brazilian Context.", bioEs: "Investigador posdoctoral en la Universidad Federal de Sergipe, donde su trabajo se centra en multialfabetizaciones, diseño de aprendizaje y tecnologías digitales aplicadas a la educación. Es Doctor en Alfabetizaciones por la Universidad de São Paulo (USP). Ha publicado sobre diseño multimodal, formación docente e inteligencia artificial generativa (IAG) en educación, recibiendo dos premios de excelencia por su investigación. Actualmente, investiga aplicaciones de IAG para la educación como miembro del Grupo de Investigación Ciber-Social, TECLA y del Proyecto Nacional de Alfabetizaciones. Es autor del libro New Literacies, New Learning: Cyber-Social Pedagogies in the Brazilian Context." },
+        { nameEn: "Rodrigo Camargo Aragão", namePt: "Rodrigo Camargo Aragão", nameEs: "Rodrigo Camargo Aragão", roleEn: "Language Education & Emotions", rolePt: "Educação Linguística & Emoções", roleEs: "Educación Lingüística & Emociones", bioEn: "Full Professor and faculty member at the Graduate Program and Undergraduate Program in Letters at UESC. CNPq research productivity fellow. He completed his PhD in Linguistic Studies with an internship at the University of Seville under the supervision of Jane Arnold. He developed postdoctoral research at UFMG/CNPq. He was a visiting professor at the Department of Applied Linguistics at the University of Jyväskylä in Finland. He is vice-coordinator of the ANPOLL Language and Technologies GT for the 2026-2028 biennium. Between 2011 and 2013, he coordinated the Directorate of Distance Education of the State of Bahia at the Anísio Teixeira Institute. He coordinated the ANPOLL Language and Technologies GT between 2014-2016 where he has been a researcher since its founding in 2010. He is a member of the Brazilian Association of Applied Linguistics since 2001. He coordinates the research group (FORTE) that develops research on language education in light of interrelationships between emotion, language, technology and culture.", bioPt: "Professor Titular e Docente no Programa de Pós-Graduação e na Licenciatura em Letras da UESC. Bolsista de produtividade em pesquisa do CNPq. Concluiu doutorado em Estudos Linguísticos com estágio na Universidade de Sevilha sob a supervisão de Jane Arnold. Desenvolveu pesquisa de pós-doutorado na UFMG/CNPq. Foi professor visitante no Departamento de Linguística Aplicada da Universidade de Jyväskylä na Finlândia. É vice coordenador do GT de Linguagem e Tecnologias da ANPOLL no biênio 2026-2028. Entre 2011 e 2013, coordenou a Diretoria de EAD do Estado da Bahia no Instituto Anísio Teixeira. Coordenou o GT de Linguagem e Tecnologias da ANPOLL entre 2014-2016 onde é pesquisador desde sua fundação em 2010. É membro da Associação de Linguística Aplicada do Brasil desde 2001. Coordena o grupo de pesquisa (FORTE) que desenvolve pesquisa sobre educação linguística à luz de inter-relações entre emoção, linguagem, tecnologia e cultura.", bioEs: "Profesor Titular y Docente en el Programa de Posgrado y la Licenciatura en Letras de la UESC. Becario de productividad en investigación del CNPq. Completó su doctorado en Estudios Lingüísticos con una pasantía en la Universidad de Sevilla bajo la supervisión de Jane Arnold. Desarrolló investigación posdoctoral en UFMG/CNPq. Fue profesor visitante en el Departamento de Lingüística Aplicada de la Universidad de Jyväskylä en Finlandia. Es vicecoordinador del GT de Lenguaje y Tecnologías de ANPOLL para el bienio 2026-2028. Entre 2011 y 2013, coordinó la Dirección de Educación a Distancia del Estado de Bahía en el Instituto Anísio Teixeira. Coordinó el GT de Lenguaje y Tecnologías de ANPOLL entre 2014-2016, donde ha sido investigador desde su fundación en 2010. Es miembro de la Asociación Brasileña de Lingüística Aplicada desde 2001. Coordina el grupo de investigación (FORTE) que desarrolla investigación sobre educación lingüística a la luz de las interrelaciones entre emoción, lenguaje, tecnología y cultura." },
+        { nameEn: "Zhe (Victor) Zhang", namePt: "Zhe (Victor) Zhang", nameEs: "Zhe (Victor) Zhang", roleEn: "AI-Assisted Language Learning", rolePt: "Aprendizagem de Línguas Assistida por IA", roleEs: "Aprendizaje de Idiomas Asistido por IA", bioEn: "Associate professor at Macao Polytechnic University. He has been recognized among the World's Top 2% Most-cited Scientists 2025 by Stanford University and Elsevier. His research focuses on computer-and AI-assisted language learning, second language writing, multilingualism, and language and identity.", bioPt: "Professor associado na Universidade Politécnica de Macau. Ele foi reconhecido entre os 2% dos Cientistas Mais Citados do Mundo 2025 pela Universidade de Stanford e Elsevier. Sua pesquisa se concentra em aprendizagem de línguas assistida por computador e IA, escrita em segunda língua, multilinguismo e linguagem e identidade.", bioEs: "Profesor asociado en la Universidad Politécnica de Macao. Ha sido reconocido entre el 2% de los Científicos Más Citados del Mundo 2025 por la Universidad de Stanford y Elsevier. Su investigación se centra en el aprendizaje de idiomas asistido por computadora e IA, la escritura en segunda lengua, el multilingüismo y el lenguaje y la identidad." }
+    ];
+        
+    let currentLang = "en";
+    let currentTab = "home";
+    let currentSessionIndex = 0;
+
+    function t(key, subKey = null, idx = -1) {
+        const dict = translations[currentLang];
+        if (subKey && idx >= 0 && dict[subKey] && dict[subKey][idx]) return dict[subKey][idx][key];
+        if (subKey) return dict[subKey];
+        return dict[key] || "";
+    }
+
+    function updateTicker() {
+        document.getElementById("tickerText").innerHTML = `<span><i class="fas fa-microchip"></i> ${t("tickerMsg")}</span><span><i class="fas fa-microchip"></i> ${t("tickerMsg")}</span>`.repeat(2);
+    }
+
+    function getSessionTitle(s) { return currentLang === 'en' ? s.titleEn : (currentLang === 'pt' ? s.titlePt : s.titleEs); }
+    function getSessionDesc(s) { return currentLang === 'en' ? s.descEn : (currentLang === 'pt' ? s.descPt : s.descEs); }
+
+    function renderHome() {
+        const guide = t("guidingQuestion");
+        const openingSession = sessions[0];
+        const openingEmbed = `<div class="embed-responsive"><iframe src="https://www.youtube.com/embed/${openingSession.ytId}?autoplay=0" allowfullscreen></iframe></div>`;
+        return `
+            <div>
+                <div style="margin-bottom:2rem;"><h2 class="section-title">${t("heroTitle")}</h2><p style="font-size:1.2rem;">${t("heroDate")}</p><p style="margin:1rem 0;">${t("symposiumInfo")}</p><div style="background:rgba(124,58,237,0.2); border-radius:28px; padding:1rem; margin-top:1rem;"><i class="fas fa-quote-left"></i> ${guide}</div></div>
+                <div class="preview-grid"><div class="preview-card" id="previewScheduleBtn"><i class="fas fa-tv fa-2x"></i><h3>${t("previewSchedule")}</h3><p>12 sessions, 3 languages</p></div><div class="preview-card" id="previewSpeakersBtn"><i class="fas fa-users fa-2x"></i><h3>${t("previewSpeakers")}</h3><p>30+ international researchers</p></div></div>
+                <h3 class="section-title">${t("liveStreamTitle")}</h3>
+                ${openingEmbed}
+                <p style="margin: 0.5rem 0 1rem;"><i class="fab fa-youtube"></i> <strong>${getSessionTitle(openingSession)}</strong> — ${openingSession.time} (UTC-3) | ${t("language")}: ${openingSession.lang.toUpperCase()}</p>
+                <a href="https://www.youtube.com/@GlobalSymposiumonAI" target="_blank" class="btn-channel"><i class="fab fa-youtube"></i> Official YouTube Channel</a>
+                <h3 class="section-title" style="margin-top:2rem;">${t("faqTitle")}</h3>
+                ${t("faq").map(item => `<div class="faq-item"><strong>❔ ${item.q}</strong><p>${item.a}</p></div>`).join('')}
+            </div>
+        `;
+    }
+
+    function renderSchedule() {
+        const selected = sessions[currentSessionIndex];
+        const embedUrl = `https://www.youtube.com/embed/${selected.ytId}?autoplay=0`;
+        const sessionListHtml = sessions.map((s, idx) => {
+            const title = getSessionTitle(s);
+            const isActive = idx === currentSessionIndex;
+            return `
+                <div class="session-list-item ${isActive ? 'active-session' : ''}" data-session-index="${idx}">
+                    <div class="time">${s.day === 1 ? 'Day 1' : 'Day 2'} • ${s.time} • [${s.lang.toUpperCase()}]</div>
+                    <div class="title">${title}</div>
+                </div>
+            `;
+        }).join('');
+        return `
+            <div class="schedule-live-container">
+                <div class="session-list">
+                    <h3 style="margin-bottom: 1rem;">📋 All Sessions (click to watch)</h3>
+                    ${sessionListHtml}
+                </div>
+                <div class="live-player-area">
+                    <div class="embed-responsive"><iframe src="${embedUrl}" allowfullscreen></iframe></div>
+                    <div class="session-detail">
+                        <h3>${getSessionTitle(selected)}</h3>
+                        <p><i class="far fa-clock"></i> ${selected.time} (UTC-3) • <span class="language-badge">${selected.lang.toUpperCase()}</span></p>
+                        <p>${getSessionDesc(selected)}</p>
+                        <a href="https://www.youtube.com/watch?v=${selected.ytId}" target="_blank" class="youtube-link" style="display:inline-block; margin-top:0.5rem;"><i class="fab fa-youtube"></i> ${t("watchNow")}</a>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // ========== NEW ENRICHED INFO TAB ==========
+    function renderInfo() {
+        const themes = [
+            "Generative AI in education and teacher training",
+            "Multiliteracies, digital platforms and algorithmic curation",
+            "AI ethics, bias and critical pedagogy",
+            "Language preservation, multilingualism and LLMs",
+            "Decolonial perspectives on AI in the Global South"
+        ];
+        const resources = [
+            { name: "UNESCO AI and Education", url: "https://www.unesco.org/en/digital-education/ai-future-learning" },
+            { name: "OECD Policy Observatory on AI", url: "https://oecd.ai/" },
+            { name: "Critical AI Literacy (Routledge)", url: "https://www.routledge.com/" },
+            { name: "TECLA Research Group Publications", url: "https://tecla.ufs.br/publications" }
+        ];
+        return `
+            <div class="info-card">
+                <h2 class="section-title">${t("infoTitle")}</h2>
+                <p style="font-size:1.05rem; line-height:1.5; margin-bottom:1.5rem;">${t("infoContent")}</p>
+                
+                <div style="background:rgba(124,58,237,0.15); border-radius:24px; padding:1.2rem; margin-bottom:1.5rem;">
+                    <h3 style="color:#c084fc; margin-bottom:0.5rem;">✨ ${t("guidingQuestion")}</h3>
+                    <p style="font-style:italic;">${t("guidingQuestion")}</p>
+                </div>
+                
+                <h3 style="color:#c084fc; margin:1.2rem 0 0.8rem 0;">📌 Key themes of the symposium</h3>
+                <ul style="margin-left:1.5rem; margin-bottom:1.5rem;">
+                    ${themes.map(t => `<li style="margin:0.5rem 0;">${t}</li>`).join('')}
+                </ul>
+                
+                <h3 style="color:#c084fc; margin:1.2rem 0 0.8rem 0;">📚 Further reading & resources</h3>
+                <div style="display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:1rem;">
+                    ${resources.map(r => `<a href="${r.url}" target="_blank" style="background:rgba(124,58,237,0.2); padding:0.4rem 1rem; border-radius:40px; text-decoration:none; color:white; font-size:0.85rem;"><i class="fas fa-external-link-alt"></i> ${r.name}</a>`).join('')}
+                </div>
+                
+                <p style="margin-top:1rem; font-size:0.9rem; opacity:0.7;">All sessions are free, open, and will be recorded. Join the conversation using #TECLA2026.</p>
+            </div>
+        `;
+    }
+
+    // ========== SPEAKERS RENDER (using imageMap as before) ==========
+    function renderSpeakers() {
+        const imageMap = {
+            "Adriana Pérez": "adriana_perez.jpg",
+            "Aires Bonifácio Mombassa": "aires_mombassa.jpg",
+            "Allessandra Elisabeth dos Santos": "allessandra_elisabeth_dos_santos.jpeg",
+            "Ana Karina de Oliveira Nascimento": "ana_karina_de_oliveira_nascimento.JPG",
+            "Bárbara Cristina Gallardo": "barbara_cristina_gallardo.jpg",
+            "Bill Cope": "bill_cope.jpg",
+            "Cíntia Rabello": "cíntia_rabello.jpg",
+            "Débora Liberato Arruda": "débora_arruda.jpg",
+            "Eduardo Moura": "eduardo_moura.png",
+            "Eliane Fernandes Azzari": "eliane_fernandes_azzari.jpg",
+            "Emanuel Pedro Martins Gomes": "emanoel_pedro_martins_gomes.jpeg",
+            "Gurumurthy Kasinathan": "gurumurthy_kasinathan.jpg",
+            "Janaina Cardoso de Mello": "janaina_cardoso_de_mello.jpg",
+            "Jefferson do Carmo": "jefferson_do_carmo.jpeg",
+            "John Pike": "john_pike.png",
+            "Júlio Araújo": "júlio_araújo.jpeg",
+            "Kleber Aparecido da Silva": "kleber_aparecido_da_silva.jpeg",
+            "Leonardo Zenha": "leonardo_zenha.jpg",
+            "Letícia Moraes": "letícia_moraes.jpeg",
+            "Lilia Gonçalves": "lilia_gonçalves.png",
+            "Luciana C. de Oliveira": "luciana_de_oliveira.jpeg",
+            "María Nuria Lloret Romero": "maría_nuria_lloret_romero.jpg",
+            "Nina da Hora": "nina_da_hora.jpg",
+            "José Paulo Gomes Brazão": "paulo_brazão.png",
+            "Rafael Vetromille-Castro": "rafael_vetromille_castro.png",
+            "Raquel Recuero": "raquel_recuero.jpeg",
+            "Raúl Alberto Mora": "raúl_mora.jpg",
+            "Rodrigo Abrantes da Silva": "rodrigo_abrantes.jpg",
+            "Rodrigo Camargo Aragão": "rodrigo_camargo_aragão.jpg",
+            "Zhe (Victor) Zhang": "victor_zhang.jpg"
+        };
+        let html = `<h2 class="section-title">${t("speakersTitle")}</h2><div class="speakers-grid">`;
+        speakersData.forEach(sp => {
+            const name = currentLang === 'en' ? sp.nameEn : (currentLang === 'pt' ? sp.namePt : sp.nameEs);
+            const role = currentLang === 'en' ? sp.roleEn : (currentLang === 'pt' ? sp.rolePt : sp.roleEs);
+            const fullBio = currentLang === 'en' ? sp.bioEn : (currentLang === 'pt' ? sp.bioPt : sp.bioEs);
+            const fileName = imageMap[sp.nameEn] || "default.jpg";
+            const imgUrl = `assets/images/speakers/${fileName}`;
+            html += `
+                <div class="speaker-card">
+                    <img src="${imgUrl}" class="speaker-img" alt="${name}">
+                    <h3>${name}</h3>
+                    <p style="color:#c084fc;">${role}</p>
+                    <button class="read-more-btn" data-name="${name.replace(/"/g, '&quot;')}" data-role="${role.replace(/"/g, '&quot;')}" data-bio="${fullBio.replace(/"/g, '&quot;').replace(/\n/g, ' ')}">📖 Read more</button>
+                </div>
+            `;
+        });
+        html += `</div>`;
+        return html;
+    }
+
+    // ========== PROFESSOR CARD AND TEAM MEMBERS DATA ==========
+    const professor = {
+        name: "Paulo Boa Sorte",
+        role: "Host professor & TECLA research group coordinator",
+        bio: "Líder do grupo de pesquisa Tecnologias, Educação e Linguística Aplicada (Tecla/CNPq) e do Centro Internacional de Pesquisa AI Worlwide: Education, Language & Society. Membro do GT Linguagem e Tecnologias da Associação Nacional de Pós-Graduação em Letras e Linguística (Anpoll).",
+        img: "assets/images/speakers/paulo_boa_sorte.jpg",
+        website: "https://pauloboasorte.com/",
+        email: "pauloboasorte@academico.ufs.br"
+    };
+
+    const teamMembers = [
+        { name: "Anthony", role: "Art direction & graphic design", email: "anthony@tecla.ufs.br" },
+        { name: "Brandon", role: "Website development", email: "brandon@academico.ufs.br", github: "https://github.com/kawokbrn" },
+        { name: "Eduardo", role: "Social media management", email: "eduardo@tecla.ufs.br" },
+        { name: "Everton", role: "Marketing & communication", email: "everton@tecla.ufs.br" },
+        { name: "Fulano", role: "Research coordination", email: "fulano@tecla.ufs.br" },
+        { name: "Beltrano", role: "Scientific committee support", email: "beltrano@tecla.ufs.br" }
+    ];
+
+    // ========== REDESIGNED CONTACT TAB ==========
+    function renderContact() {
+        const socialLinks = `
+            <div class="social-icon-list" style="margin-top:1rem;">
+                <a href="https://www.instagram.com/teclaufs/" target="_blank"><i class="fab fa-instagram"></i> TECLA</a>
+                <a href="https://www.instagram.com/ufsoficial/" target="_blank"><i class="fab fa-instagram"></i> UFS</a>
+                <a href="https://www.instagram.com/ppged_ufs/" target="_blank"><i class="fab fa-instagram"></i> PPGED</a>
+                <a href="https://www.ufs.br/" target="_blank"><i class="fas fa-globe"></i> UFS Website</a>
+            </div>
+        `;
+
+        const professorCard = `
+            <div style="background:rgba(15,15,30,0.6); backdrop-filter:blur(8px); border-radius:28px; padding:1.5rem; margin-bottom:2rem; display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center;">
+                <div style="flex-shrink:0;">
+                    <img src="${professor.img}" alt="${professor.name}" style="width:100px; height:100px; border-radius:50%; object-fit:cover; border:2px solid #c084fc;">
+                </div>
+                <div style="flex:1;">
+                    <h3 style="color:#c084fc; margin-bottom:0.2rem;">${professor.name}</h3>
+                    <p style="font-size:0.9rem; opacity:0.8;">${professor.role}</p>
+                    <p style="margin:0.8rem 0;">${professor.bio.substring(0, 280)}...</p>
+                    <div style="display:flex; gap:1rem;">
+                        <a href="${professor.website}" target="_blank" style="background:rgba(124,58,237,0.3); padding:0.3rem 1rem; border-radius:40px; text-decoration:none; color:white; font-size:0.85rem;"><i class="fas fa-globe"></i> Personal website</a>
+                        <a href="mailto:${professor.email}" style="background:rgba(124,58,237,0.3); padding:0.3rem 1rem; border-radius:40px; text-decoration:none; color:white; font-size:0.85rem;"><i class="fas fa-envelope"></i> Email</a>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        const teamGrid = `
+            <h3 style="color:#c084fc; margin:1.5rem 0 1rem 0;">🌐 Organizing team & contributors</h3>
+            <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:1rem;">
+                ${teamMembers.map(m => `
+                    <div style="background:rgba(20,20,40,0.5); border-radius:20px; padding:0.8rem 1rem;">
+                        <strong>${m.name}</strong><br>
+                        <span style="font-size:0.8rem; opacity:0.7;">${m.role}</span><br>
+                        <a href="mailto:${m.email}" style="font-size:0.7rem; color:#c084fc;">${m.email}</a>
+                        ${m.github ? `<br><a href="${m.github}" target="_blank" style="font-size:0.7rem; color:#c084fc;"><i class="fab fa-github"></i> GitHub</a>` : ''}
+                    </div>
+                `).join('')}
+            </div>
+        `;
+
+        const contactDetails = t("contactDetails").split('\n').map(l => `<p>${l}</p>`).join('');
+
+        return `
+            <div class="contact-card">
+                <h2 class="section-title">${t("contactTitle")}</h2>
+                ${professorCard}
+                <div style="background:rgba(124,58,237,0.1); border-radius:24px; padding:1.2rem; margin:1rem 0;">
+                    <i class="fas fa-university contact-icon"></i>
+                    <div style="display:inline-block; margin-left:0.5rem;">${contactDetails}</div>
+                </div>
+                ${socialLinks}
+                ${teamGrid}
+                <div style="margin-top:2rem; background:rgba(124,58,237,0.2); border-radius:28px; padding:1rem; text-align:center;">
+                    <i class="fas fa-chalkboard"></i> <strong>Realization:</strong> TECLA Research Group (UFS) & Partner Institutions
+                </div>
+            </div>
+        `;
+    }
+
+    function renderCurrentTab() {
+        const container = document.getElementById("mainContent");
+        if (currentTab === "home") container.innerHTML = renderHome();
+        else if (currentTab === "schedule") container.innerHTML = renderSchedule();
+        else if (currentTab === "info") container.innerHTML = renderInfo();
+        else if (currentTab === "speakers") {
+            container.innerHTML = renderSpeakers();
+            attachModalListeners();
+        }
+        else if (currentTab === "contact") container.innerHTML = renderContact();
+
+        if (currentTab === "home") {
+            document.getElementById("previewScheduleBtn")?.addEventListener("click", () => switchTab("schedule"));
+            document.getElementById("previewSpeakersBtn")?.addEventListener("click", () => switchTab("speakers"));
+        } else if (currentTab === "schedule") {
+            document.querySelectorAll(".session-list-item").forEach(el => {
+                el.addEventListener("click", (e) => {
+                    const idx = parseInt(el.getAttribute("data-session-index"));
+                    if (!isNaN(idx) && idx !== currentSessionIndex) {
+                        currentSessionIndex = idx;
+                        renderCurrentTab();
+                    }
+                });
+            });
+        }
+    }
+
+    function switchTab(tabId) {
+        currentTab = tabId;
+        document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.toggle("active", btn.getAttribute("data-tab") === tabId));
+        renderCurrentTab();
+    }
+
+    function changeLanguage(lang) {
+        currentLang = lang;
+        document.querySelectorAll(".lang-btn").forEach(btn => btn.classList.toggle("active-lang", btn.getAttribute("data-lang") === lang));
+        
+        // Update tab button texts
+        document.querySelectorAll(".tab-btn").forEach(btn => {
+            const tabId = btn.getAttribute("data-tab");
+            if (tabId === "home") btn.textContent = translations[lang].tabHome;
+            else if (tabId === "schedule") btn.textContent = translations[lang].tabSchedule;
+            else if (tabId === "info") btn.textContent = translations[lang].tabInfo;
+            else if (tabId === "speakers") btn.textContent = translations[lang].tabSpeakers;
+            else if (tabId === "contact") btn.textContent = translations[lang].tabContact;
+        });
+        
+        updateTicker();
+        renderCurrentTab();
+    }
+
+    function initFadingHeader() {
+        const header = document.querySelector(".glass-header");
+        window.addEventListener("scroll", () => header.classList.toggle("header-fade", window.scrollY > 20));
+    }
+
+    function bindEvents() {
+        document.querySelectorAll(".tab-btn").forEach(btn => btn.addEventListener("click", () => switchTab(btn.getAttribute("data-tab"))));
+        document.querySelectorAll(".lang-btn").forEach(btn => btn.addEventListener("click", () => changeLanguage(btn.getAttribute("data-lang"))));
+    }
+
+    // Modal functionality for speaker bios
+    const modal = document.getElementById("speakerModal");
+    const modalName = document.getElementById("modalName");
+    const modalRole = document.getElementById("modalRole");
+    const modalBio = document.getElementById("modalBio");
+    const closeModal = document.querySelector(".close-modal");
+
+    function openSpeakerModal(name, role, bio) {
+        modalName.textContent = name;
+        modalRole.textContent = role;
+        modalBio.textContent = bio;
+        modal.style.display = "flex";
+    }
+
+    if (closeModal) {
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    function attachModalListeners() {
+        document.querySelectorAll(".read-more-btn").forEach(btn => {
+            btn.removeEventListener("click", handleModalClick);
+            btn.addEventListener("click", handleModalClick);
+        });
+    }
+
+    function handleModalClick(e) {
+        const btn = e.currentTarget;
+        const name = btn.getAttribute("data-name");
+        const role = btn.getAttribute("data-role");
+        const bio = btn.getAttribute("data-bio");
+        openSpeakerModal(name, role, bio);
+    }
+
+    function init() { 
+        bindEvents(); 
+        initFadingHeader(); 
+        changeLanguage("en"); 
+        updateTicker(); 
+    }
+    init();
+</script>
+</body>
+</html>
